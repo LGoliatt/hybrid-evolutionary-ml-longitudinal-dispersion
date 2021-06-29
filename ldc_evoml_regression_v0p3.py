@@ -11,8 +11,7 @@ from sklearn.model_selection import (GridSearchCV, KFold, cross_val_predict,
                                      LeaveOneOut, KFold, StratifiedKFold,
                                      cross_val_predict,train_test_split)
 from sklearn.metrics import r2_score, mean_squared_error
-from sklearn.decomposition import KernelPCA
-from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures, MaxAbsScaler, Normalizer, StandardScaler, MaxAbsScaler, FunctionTransformer, QuantileTransformer
+from sklearn.preprocessing import MinMaxScaler, MaxAbsScaler, FunctionTransformer
 from sklearn.pipeline import Pipeline
 
 from sklearn.svm import SVR
@@ -68,32 +67,20 @@ def model_base_evaluation(x, data_args, estimator_args,
               'None'            : FunctionTransformer(),
               'MinMax'          : MinMaxScaler(), 
               'MaxAbs'          : MaxAbsScaler(), 
-              'Standard'        : StandardScaler(),
-              'Log'             : FunctionTransformer(np.log1p),
-              'Quantile Norm.'  : QuantileTransformer(n_quantiles=n_features,  output_distribution='normal'),
-              'Quantile Unif.'  : QuantileTransformer(n_quantiles=n_features,  output_distribution='uniform'),
-              'Poly'            : PolynomialFeatures(),
              }
   
-  normalizer_dict={0:'None', 1:'MinMax', 2:'MaxAbs', 3:'Standard', 4:'Log', 5:'Quantile Norm.', 6:'Quantile Unif.', 7:'Poly',}
+  normalizer_dict={0:'None', 1:'MinMax', 2:'MaxAbs',}
   n=normalizer_dict[normalizer_type]
   #
   # transformer
   #
-  kernel={0:"linear", 1:"poly", 2:"rbf", 3:"sigmoid", 4:"cosine", }
-  
   if transformer_type=='Identity':
       n_components=None
       
-  if transformer_type=='KPCA':
-      k = kernel[kernel_type]
-  else:
-      k=None
+ 
       
   transformer={
                'Identity'   : FunctionTransformer(),
-               'PCA'        : KernelPCA(kernel='linear', n_components=n_components, random_state=random_seed),
-               'KPCA'       : KernelPCA(kernel=k       , n_components=n_components, random_state=random_seed),
               }
   transformer_dict={0:'Identity', 1:'PCA', 2:'KPCA',}
   t=transformer_dict[transformer_type]
@@ -150,7 +137,7 @@ def model_base_evaluation(x, data_args, estimator_args,
             'Y_TEST_PRED':y_t,             
             'EST_PARAMS':p, 'PARAMS':x, 'EST_NAME':clfnme,
             'SCALES_PARAMS':{'scaler':n},
-            'TRANSF_PARAMS':{'tranformer':t, 'kernel':k, 'n_components':n_components},
+            'TRANSF_PARAMS':{'tranformer':t, },
             'ACTIVE_VAR':ft, 'SCALER':n,
             'SEED':random_seed, 'N_SPLITS':n_splits,
             'OUTPUT':target
@@ -248,16 +235,17 @@ class evoML:
 basename='evo_ml_'
 
 datasets = [
+            read_data_ldc_tayfur( case = 0, feature_selection=True ),            
             read_data_ldc_tayfur( case = 0 ),            
-            #read_data_ldc_tayfur( case = 1 ),
-            #read_data_ldc_tayfur( case = 2 ),
-            #read_data_ldc_tayfur( case = 3 ),
-            #read_data_ldc_tayfur( case = 4 ),
-            #read_data_ldc_tayfur( case = 5 ),
-            #read_data_ldc_tayfur( case = 6 ),
-            #read_data_ldc_tayfur( case = 7 ),
-            #read_data_ldc_tayfur( case = 8 ),
-            ]
+            read_data_ldc_tayfur( case = 1 ),
+            read_data_ldc_tayfur( case = 2 ),
+            read_data_ldc_tayfur( case = 3 ),
+            read_data_ldc_tayfur( case = 4 ),
+            read_data_ldc_tayfur( case = 5 ),
+            read_data_ldc_tayfur( case = 6 ),
+            read_data_ldc_tayfur( case = 7 ),
+            read_data_ldc_tayfur( case = 8 ),
+           ]
      
 #%%----------------------------------------------------------------------------   
 
@@ -268,7 +256,7 @@ scoring     = 'neg_root_mean_squared_error'
 for run in range(run0, n_runs):
     random_seed=run+100
     
-    for dataset in datasets:#[:1]:
+    for dataset in datasets:
         dr=dataset['name'].replace(' ','_').replace("'","").lower()
         path='./pkl_'+dr+'/'
         os.system('mkdir  '+path)
@@ -277,6 +265,7 @@ for run in range(run0, n_runs):
             dataset_name, X_train, X_test   = dataset['name'], dataset['X_train'], dataset['X_test']
             n_samples_train, n_features     = dataset['n_samples'], dataset['n_features']
             task, normalize                 = dataset['task'], dataset['normalize']
+            feature_selection                = dataset['feature_selection']
             n_samples_test                  = len(y_test)
             np.random.seed(random_seed)
 
@@ -288,17 +277,23 @@ for run in range(run0, n_runs):
             s+='Number of features         : '+str(n_features)+'\n'
             s+='Normalization              : '+str(normalize)+'\n'
             s+='Task                       : '+str(dataset['task'])+'\n'
+            s+='Feature Selection          : '+str(feature_selection)+'\n'
             s+='Reference                  : '+str(dataset['reference'])+'\n'
             s+='='*80
             s+='\n'            
             
             print(s)
             #------------------------------------------------------------------
-            lb_svr = [2,    0, 0., 0,    -1e-1, 1e+1, 1e-1,           ] + [0.0]*n_features
-            ub_svr = [2,    0, 1., 4,     1e+1, 1e+4,    4,           ] + [1.0]*n_features
+            if feature_selection:
+                l_feat, u_feat =  [0.0]*n_features, [1.0]*n_features
+            else:
+                l_feat, u_feat =  [], []
+                
+            lb_svr = [2,    0, 0., 0,    -1e-1, 1e+1, 1e-1,           ] + l_feat
+            ub_svr = [2,    0, 1., 4,     1e+1, 1e+4,    4,           ] + u_feat
             #------------------------------------------------------------------         
-            lb_gpr = [2,    0, 0., 0,     0   , 1e-3, 1e-3,  0.0,  0.0] + [0.0]*n_features
-            ub_gpr = [2,    0, 1., 4,     0   , 1e+1,    4,  0.1, 10.0] + [1.0]*n_features
+            lb_gpr = [2,    0, 0., 0,     0   , 1e-3, 1e-3,  0.0,  0.0] + l_feat
+            ub_gpr = [2,    0, 1., 4,     0   , 1e+1,    4,  0.1, 10.0] + u_feat
             #------------------------------------------------------------------         
             args = (X_train, y_train, X_test, y_test, 'eval', task,  n_splits, 
                     int(random_seed), scoring, target, 
@@ -306,7 +301,7 @@ for run in range(run0, n_runs):
             #------------------------------------------------------------------         
             optimizers=[             
                 ('SVR'  , lb_svr, ub_svr, fun_svr_fs, args, random_seed,),  
-                ('GPR'  , lb_gpr, ub_gpr, fun_gpr_fs, args, random_seed,),  
+                #('GPR'  , lb_gpr, ub_gpr, fun_gpr_fs, args, random_seed,),  
                 ]
             #------------------------------------------------------------------         
             for (clf_name, lb, ub, fun, args, random_seed) in optimizers:

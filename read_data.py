@@ -3,7 +3,10 @@
 import pandas as pd
 import numpy as np
 #-------------------------------------------------------------------------------
-def read_data_ldc_tayfur(filename='./data/data_ldc_vijay/vijay_ldc_paper_data.csv', case=0):
+def read_data_ldc_tayfur(filename='./data/data_ldc_vijay/vijay_ldc_paper_data.csv', 
+                         case=0,
+                         feature_selection=False,
+                         ):
 #%%    
     df=pd.read_csv(filename,  delimiter=';', index_col='Training')
     df.drop(labels=['Stream'], axis=1, inplace=True)
@@ -49,24 +52,25 @@ def read_data_ldc_tayfur(filename='./data/data_ldc_vijay/vijay_ldc_paper_data.cs
     y_test  = df[df.index=='**'][target_names].values
     n_samples, n_features = X_train.shape
     dataset=  {
-      'task'            : 'regression',
-      'name'            : 'LDC case '+str(case),
-      'feature_names'   : np.array(feature_names),
-      'target_names'    : target_names,
-      'n_samples'       : n_samples, 
-      'n_features'      : n_features,
-      'X_train'         : X_train,
-      'X_test'          : X_test,
-      'y_train'         : y_train.T,
-      'y_test'          : y_test.T,      
-      'targets'         : target_names,
-      'true_labels'     : None,
-      'predicted_labels': None,
-      'descriptions'    : 'None',
-      'items'           : None,
-      'reference'       : "https://doi.org/10.1061/(ASCE)0733-9429(2005)131:11(991)",      
-      'normalize'       : 'MinMax',
-      'date_range'      : None
+      'task'             : 'regression',
+      'name'             : 'LDC case '+str(case),
+      'feature_names'    : np.array(feature_names),
+      'target_names'     : target_names,
+      'n_samples'        : n_samples, 
+      'n_features'       : n_features,
+      'X_train'          : X_train,
+      'X_test'           : X_test,
+      'y_train'          : y_train.T,
+      'y_test'           : y_test.T,      
+      'targets'          : target_names,
+      'true_labels'      : None,
+      'predicted_labels' : None,
+      'descriptions'     : 'None',
+      'items'            : None,
+      'reference'        : "https://doi.org/10.1061/(ASCE)0733-9429(2005)131:11(991)",      
+      'normalize'        : 'MinMax',
+      'date_range'       : None,
+      'feature_selection': feature_selection,
       }
 #%%
     return dataset  
