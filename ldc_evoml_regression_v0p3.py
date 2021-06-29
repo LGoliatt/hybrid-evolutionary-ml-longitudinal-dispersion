@@ -82,7 +82,7 @@ def model_base_evaluation(x, data_args, estimator_args,
   transformer={
                'Identity'   : FunctionTransformer(),
               }
-  transformer_dict={0:'Identity', 1:'PCA', 2:'KPCA',}
+  transformer_dict={0:'Identity',}
   t=transformer_dict[transformer_type]
   #
   # estimator pipeline
