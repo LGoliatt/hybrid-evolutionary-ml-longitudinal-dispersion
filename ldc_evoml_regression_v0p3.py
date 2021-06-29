@@ -301,7 +301,7 @@ for run in range(run0, n_runs):
             #------------------------------------------------------------------         
             optimizers=[             
                 ('SVR'  , lb_svr, ub_svr, fun_svr_fs, args, random_seed,),  
-                #('GPR'  , lb_gpr, ub_gpr, fun_gpr_fs, args, random_seed,),  
+                ('GPR'  , lb_gpr, ub_gpr, fun_gpr_fs, args, random_seed,),  
                 ]
             #------------------------------------------------------------------         
             for (clf_name, lb, ub, fun, args, random_seed) in optimizers:
