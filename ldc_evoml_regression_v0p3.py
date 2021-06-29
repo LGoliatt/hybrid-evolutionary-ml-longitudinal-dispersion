@@ -223,7 +223,7 @@ def fun_gpr_fs(x,*data_args):
         3: k1**2 * RBF(length_scale=int(x[5]*1000)/1000.),
         }
   
-  p={'kernel': kernel[int(x[4]+0.995)], 'alpha':x[7]}#int(x[7]*1000)/1000.}
+  p={'kernel': kernel[int(x[4]+0.995)], 'alpha':x[7]}
 
   clf.set_params(**p)
   p['k1']=k1
