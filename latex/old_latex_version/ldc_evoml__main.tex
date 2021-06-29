@@ -1,0 +1,679 @@
+\documentclass[a4paper,12pt, english]{article}
+
+\usepackage{booktabs}
+
+
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{fontenc}
+\usepackage{graphicx}
+\usepackage{a4wide}
+\usepackage{etex}
+% \usepackage{booktabs}
+\usepackage[]{hyperref}
+\usepackage{rotating}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{todonotes}
+\usepackage{tabularx}
+
+\usepackage{amsmath,mathptmx,amssymb}
+\usepackage{times}
+\usepackage{algorithmic}
+\usepackage{todonotes}
+
+
+\title{A hybrid evolutionary machine learning pipeline for longitudinal dispersion coefficient modeling}
+
+\author{}
+
+\date{\today}
+\sloppy \hyphenpenalty 10000
+
+
+\newcommand{\x}{\mathbf{x}}
+
+\begin{document}
+
+\maketitle
+%---------------------------------------------------------------------------------
+\begin{abstract}
+ 
+ 
+\end{abstract}
+
+%---------------------------------------------------------------------------------
+\section{\label{sec:intro} Introduction}
+%---------------------------------------------------------------------------------
+
+Various types of contaminants are discharged into water bodies across the world both point and non-point forms and these contaminants adversely affects the water quality \cite{noori2007assessment}. Hence, providing an accurate pollution dispersion analysis in rivers a tedious issue for authorities responsible for monitoring and managing water resources. Even though pollution can disseminate in all directions of rivers \cite{tayfur2005predicting}, the longitudinal dispersion is normally dominant at a considerable distance from the pollution source after discharge into the water body \cite{riahi2009expert}. As per environmental and hydrological researchers, the most important parameter when studying the longitudinal transport of pollution in the rivers is the longitudinal dispersion coefficient ($K_x$) \cite{kashefipour2002longitudinal, etemad2012predicting, hamidifar2015longitudinal, dehghani2020novel, wang2017physically, farzadkhoo2018comparative, baek2019deriving, farzadkhoo2019flow}. $K_x$ accurate estimation is essential for numerous practical applications, such as environmental engineering, river engineering, intake designs, assessment of dangerous contaminants discharge into water bodies, etc. \cite{alizadeh2017improvement}. Several models exist which relies on the advection-dispersion equation (Eq. 1); however, the modelling results are highly affected by the nature of the $K_x$ \cite{noori2016reliable}.
+
+----------- eq (1)
+
+
+where $K_x$ = the longitudinal dispersion coefficient, $t$ = time, $x$ and $u$ = longitudinal coordinate and longitudinal velocity, respectively, and $C$ = averaged cross-sectional concentration \cite{noori2011framework}. Regarding $K_x$, it can be determined experimentally, empirically, and theoretically \cite{perucca2009estimation, wang2016estimating, data2019estimation, milivsic2019estimation, deng2001longitudinal, deng2002longitudinal, seo2004estimation, shin2019longitudinal, seo1998predicting, swamee2000empirical, zeng2014estimation, disley2015predictive, camacho2019quantifying}. The direct experimental determination of the dispersion coefficient demands cost and time inefficient tracer studies and could be done only with rectangular flumes data \cite{etemad2012predicting}. The determination of $K_x$ through theoretical means is also difficult as there are no knowledge of the transverse profiles of both the flow depth and flow velocity \cite{deng2001longitudinal}. The earlier predictive equations differ in their findings and are laden with certain levels of uncertainty; therefore, several studies have focused on the development of empirical models for $K_x$ estimation \cite{wang2017physically, altunkaynak2016prediction,nezaratian2018sensitivity}. Several studies have been devoted on discovering the relationship between $K_x$ and the hydrodynamic and  hydraulic parameters \cite{sahin2014empirical, tutmez2013regression,shen2010estimating} and some equations that model this relationship have been developed from these studies.
+
+Over the past two decades, the implementation of computer aid models reported an optimistic results in modeling hydraulic engineering problems \cite{sharafati2019application}. The importance of artificial intelligence (AI) techniques in environmental modelling has increased over the years. One among several studies conducted on the $K_x$ modeling, an artificial neural network (ANN) model developed by Tayfur and Singh \cite{tayfur2005predicting} for $K_x$ prediction in rivers and natural streams. The evaluation of the model proved its capability in predicting the $K_x$ compared to the earlier suggested empirical approaches. Another study by Tayfur \cite{tayfur2006fuzzy} presented fuzzy, ANN, and regression-based models for the $K_x$ prediction in natural streams. The prediction results showed that the developed models outperformed the existing empirical equations as they are satisfactorily predicted the measured data with minimum errors.
+A fuzzy model developed by Fuat Toprak and Savci \cite{fuat2007longitudinal} for $K_x$ prediction in natural channels. The study compared the performance of the developed model with measured data and the existing equations and from the results, the fuzzy model performed better than the other techniques in terms of results reliability. Toprak and Cigizoglu \cite{toprak2008predicting} applied three ANN models based on different learning algorithms (i.e., the radial basis function neural network, feed forward back propagation, and the generalized regression neural network) for $K_x$ estimation when evaluating its behavior in dispersion characteristics prediction in natural streams. The outcome of the study showed that the accuracy of the developed model was higher compared to the accuracy of the other existing empirical equations. The capacity of support vector machine (SVM) and adaptive neuro fuzzy inference system (ANFIS) models have been inspected by Noori et al. \cite{noori2009predicting} for $K_x$ prediction in natural streams. The study found that the SVM model performed better than the ANFIS model in terms of achieving better threshold statistical analysis. In another study \cite{riahi2009expert}, the authors developed ANFIS model for $K_x$ simulation in rivers and natural streams. The research finding showed satisfactory $K_x$ values prediction using the proposed model in comparison to the measured data. According to the authors conclusion, it is a good way of $K_x$ prediction in streams but can be combined with other mathematical pollutant transfer models for real-time updating of such models.
+
+A back-propagation neural network (BPNN) model with a 2D convergent flow tracer transport model developed by Shieh et al. \cite{shieh2010development} for improved evaluation of transverse and longitudinal dispersivities from a convergent flow tracer test. From the results, the developed model required less computational time and offered more accurate values of the transport parameter. The study also found the developed method as an effective way of achieving fast and accurate transverse and longitudinal dispersivities evaluation for a field convergent flow tracer test. An ANN model presented by Sahay \cite{sahay2011prediction} for $K_x$ prediction in natural rivers. The performance of the developed model was compared with that of earlier reported models and found to be more accurate and precise. The study by Noori et al. \cite{noori2011framework}, authors employed the ANN technique for $K_x$ prediction in natural streams. The outcome of the study showed that the developed approach is applicable in river water quality management studies. An SVM approach constructed by Azamathulla and Wu \cite{azamathulla2011support} for $K_x$ prediction in natural rivers. The study developed the proposed model based on published data on dispersion coefficient for a range of flow conditions. Research findings showed that the developed SVM model is applicable for accurate $K_x$ prediction. A genetic programming (GP) model developed by \cite{tu2015ant} for modeling $K_x$. According to the studies, practicing engineers can rely on the modern data driven approaches to improve their designs and evaluations when using GP for LDC prediction in natural rivers. The use of M5 model tree for LDC prediction has been reported by Etemad-Shahidi and Taghipour \cite{etemad2012predicting}. The model was compared to the other existing equations in terms of performance based on error measures and from the results, the developed model performed better than the existing formulas and could be a valuable tool for LDC prediction. 
+The development of an empirical formula for LDC prediction in pipe flow based on the use of the evolutionary gene expression programming (GEP) has been presented by Sattar \cite{sattar2014gene}. The GEP was used for the establishment of the empirical relationships between the LDC and some of the control parameters, such as the Reynolds number, the pipe friction coefficient, the average velocity, and the pipe diameter. The results showed that the proposed relations are simple and effective in LDC evaluation in pipe flow.
+
+The development of an empirical formulae for LDC prediction in pipe flow based on the adaptive Neuro fuzzy group method of data handling has been presented by Najafzadeh and Sattar \cite{najafzadeh2015neuro}. The evaluation of the proposed method showed that the proposed relations are simpler compared to the existing numerical solutions; it was also found as an effective way of evaluating the LDC in pipe flow. The study by Sattar and Gharabaghi \cite{sattar2015gene} presented two GEP models for LDC prediction based on 150 published data sets of hydraulic and geometric parameters in natural streams. The analysis showed that the proposed relations were accurate, simple, and effective in LDC prediction in natural streams. The suitability of empirical formulas, RBF, and MLP neural network for LDC prediction in rivers has been evaluated by Parsaie and Haghiabi \cite{parsaie2015predicting}. The outcome of the analysis showed that MLP performed best in LDC prediction while the RBF model performed a bit better than the empirical formulas in terms of accuracy. The PSO has been introduced by Najafzadeh and Tafarojnoruz \cite{najafzadeh2016evaluation} for improving the performance of neuro-fuzzy-based group method of data handling (NF-GMDH) in LDC prediction in rivers. The NF-GMDH-PSO model was compared with DE, MT, GA, ANN, and traditional empirical equations in terms of performance. From the evaluation, DE and GA methods outperformed the other among ANN-based equations. The reliability of ANN, ANFIS, and SVM in LDC prediction in natural rivers has been studied by Noori et al. \cite{noori2016reliable}. The study performed forward selection (FS) and gamma test (GT) in order to sort the input variables in the order of their effects and relevance on LDC prediction. The outcome of the study revealed less uncertainty in the SVM model compared to the ANN and ANFIS models for LDC estimation in natural rivers; furthermore, the performance of the ANFIS model was found better than that of the ANN model. A multivariate adaptive regression splines (MARS) has been developed by Haghiabi \cite{haghiabi2016prediction} for LDC prediction in rivers. The performance of the MARS model was compared to that of multi-layer neural network model and empirical formulas and the outcome showed that the MARS model performed better than the multi-layer neural network model and empirical formulas in terms of accuracy. The study by Alizadeh et al. \cite{alizadeh2017predicting} relied on the GA, imperialist competitive algorithm (ICA), bee algorithm (BA), cuckoo search (CS), and Levenberg–Marquardt (LM) algorithm for the training of ANN models for LDC prediction in rivers. The evaluation of the models showed that they can be successfully used to improve the performance of ANN models. However, the performance of the CS, ICA and BA algorithms was better than that of GA and LM in training the ANN model. The use of the Bayesian network (BN) for LDC prediction in natural rivers has been presented by Mohamad Javad Alizadeh et al. \cite{alizadeh2017prediction}. First, the study applied the clustering technique as a data preprocessing technique to cluster the data in separate groups of similar characteristics. The study showed that the developed model is a suitable way of pollutant transport prediction in natural rivers.
+
+The use of evolutionary polynomial regression (EPR) for accurate prediction of Kx  in rivers has been presented by Balf et al. \cite{balf2018evolutionary}; the prediction was based on the flow depth, channel width, and average and shear velocities. The EPR model-predicted Kx was compared with those estimated using other conventional Kx  estimation formulas and from the results, the introduced EPR model for Kx estimation was found suitable to be incorporated in one-dimensional water quality models for better solute concentration prediction in natural rivers. An ANFIS-based PCA method of LDC prediction has been developed by Parsaie et al.,\cite{parsaie2018anfis} . The evaluation of the model showed better accuracy of the ANFIS model compared to the experimental formulas. The study by Riahi-Madvar et al. \cite{riahi2019pareto}
+ presented a Pareto-Optimal-Multigene Genetic Programming (POMGGP) equation for LDC prediction kX. The study analyzed 503 data sets of channel geometry and flow conditions in natural streams in order to develop a hybrid model. The developed hybrid model is a combination of the Subset Selection of Maximum Dissimilarity Method (SSMD) with Multigene Genetic Programming (MGP) and Pareto-front optimization. The aim of the combined approach is to establish a set of selected dimensionless equations of kX and the best equation with the widest applicability. As per the authors, the proposed equation provided accurate prediction of kX compared to the other published equations; hence, it can be applied in LDC prediction in natural river flows.
+
+A hybrid approach called GRC-ANN has been presented by Ghiasi et al. \cite{ghiasi2019granular} for LDC estimation in natural rivers. The hybrid method is a combination of the granular computing (GRC) method with an ANN model. The performance of the hybrid model was compared with those of ANFIS, ANN, and other empirical models in terms of accuracy and performance in different LDC values. The outcome of the evaluation showed that the hybrid GRC-ANN approach performed better than the other LDC prediction methods. Saberi-Movahed et al., \cite{saberi2020receiving} relied on the ELM to develop a novel group method of data handling (GMDH) called GMDH-ELM for LDC prediction in water pipelines. PSO and GSA were employed to improve the feed forward structure of the GMDH-ELM model for LDC prediction. The analysis of the GMDH-ELM model showed that it achieved a good level of precision in the training and testing phases. The results further showed that the proposed GMDH-ELM performed better than other soft computing and conventional predictive models.
+
+
+The study by Kargar et al. \cite{kargar2020estimating} examined the performance of SVR, Gaussian process regression, random forest, M5 model tree (M5P), and MLR in LDC prediction in natural streams. The study found the M5P model with simple formulations to exhibit better performance compared to the other machine learning and empirical models and was recommended as a suitable tool for LDC prediction in rivers. An integrated model has been introduced by Memarzadeh et al. \cite{memarzadeh2020novel} based on the Subset Selection of Maximum Dissimilarity (SSMD) method and the Whale Optimization Algorithm (a simple optimization approach). The study presented a high accuracy formula for LDC prediction which was proven to be superior in terms of LDC prediction compared to the existing LDC prediction formulas. The Whale optimization algorithm was also found applicable in improving the predictive performance of the equations in other related fields by establishing the optimum coefficient values. The study by Riahi-Madvar et al.\cite{riahi2020improvements} relied on the SSMD and ANFIS hybridized with the firefly algorithm (FFA) to develop a hybrid system for LDC prediction. The FFA was used for the derivation of the optimum parameters of the ANFIS model. The analysis of the proposed ANFIS-FFA model showed that it was significantly improved compared to the normal ANFIS, suggesting that the parameters optimization by the nature-inspired optimization algorithms contributed significantly towards improving the generality of the ANFIS estimations.
+
+
+Successful application of one-dimensional advection-dispersion models in rivers depends on the accuracy of the longitudinal dispersion coefficient (LDC)\cite{ghiasi:2020}.
+
+Machine learning methods are interesting alternatives to predict LDC streams in natural rivers.
+Several machine learning methods are compared in \cite{katayoun:2020}.
+
+Recently, some hybrid approaches can be developed in the literature.
+In  \cite{ghiasi:2020}, a hybrid method combining granular computing (GRC), neural networks, and adaptive neuro-fuzzy inference system were developed for  LDC estimation.
+As estimation model based on the whale optimization algorithm (WOA) metaheuristic is presented in  \cite{memarzadeh:2020}.
+A comparison of various evolutionary computation optimization techniques used to train neural networks for estimating of longitudinal dispersion coefficient in rivers in presented in \cite{piotrowski:2012}.
+
+%---------------------------------------------------------------------------------
+\section{\label{sec:methods} Materials and Methods}
+%---------------------------------------------------------------------------------
+  
+%---------------------------------------------------------------------------------
+\subsection{\label{sec:methods:dataset} Longitudinal Dispersion Data}
+%---------------------------------------------------------------------------------
+\begin{table}[!h]
+\centering
+\caption{ \label{tab:input-output-var} Input and output variables.}
+\begin{center}
+\begin{tabular}{lll}
+ \hline
+Variable       & Short description                           \\ \hline
+$ B     $      &     channel width                           \\
+$ H     $      &     cross-sectional average flow depth      \\
+$ U     $      &     cross-sectional average flow velocity   \\
+$ u^*   $      &     shear velocity                          \\
+$ U/u^* $      &     relative shear velocity                 \\
+$ Q     $      &     flow discharge                          \\
+$ \beta $      &     channel shape parameter                 \\
+$ \sigma$      &     channel sinuosity                       \\\hline
+$ K_x   $      &     longitudinal dispersion coefficient     \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+% %---------------------------------------------------------------------------------
+% \subsection{\label{sec:methods:cmaes} Covariance Matrix Evolution Strategies}
+% %---------------------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------------------
+\subsection{\label{sec:methods:evofs} Proposed Hybrid Method}
+%---------------------------------------------------------------------------------
+
+
+$\x = [ \x^{FS},  \x^{MB} ]$
+
+$\x^{FS} = [ x_{B}, x_{H}, x_{Q}, x_{U}, x_{u^*}, x_{U/u^*}, x_{\beta}, x_{\sigma}, ]$
+
+$\x^{MB} = [ x_{k_0}, x_{\nu}, x_{l}, x_{\alpha} ]$
+
+
+$\x^{MB} = [ x_{C}, x_{\epsilon}, x_{\gamma}] $
+
+
+$\x = [ x_{B}, x_{H}, x_{Q}, x_{U}, x_{u^*}, x_{U/u^*}, x_{\beta}, x_{\sigma}, x_{k_0}, x_{\nu}, x_{l}, x_{\alpha} ]$
+
+$\x = [ x_{B}, x_{H}, x_{Q}, x_{U}, x_{u^*}, x_{U/u^*}, x_{\beta}, x_{\sigma}, x_{C}, x_{\epsilon}, x_{\gamma}] $
+
+
+\begin{figure}[!]
+ \centering 
+ \includegraphics[width=0.85\linewidth]{./framework/ldc_model_scheme}
+ \caption{Proposed hybrid framework}
+ \label{fig:framework}
+\end{figure}
+
+
+The objective function to be minimized is the  Root Mean Discrepancy Ratio.
+The Discrepancy Ratio DR is used as error measure in the literature and, for each sample, it is written as
+\begin{equation}
+ \label{eq:drc}
+ \mbox{DR} = \log{ \frac{K_{xp}}{K_{xm}} }
+\end{equation}
+%
+where
+$K_{xm}$ is measured dispersion coefficient, and 
+$K_{xp}$ is predicted dispersion coefficient. 
+When $K_{xp}=K_{xm}$, DR is equals to zero and there is an exact prediction.
+Otherwise,  there is either an overprediction when $\mbox{DR}> 0$, that means  $K_{xp}>K_{xm}$, or an underprediction which leads to $\mbox{DR} < 0$ and consequently  $K_{xp}<K_{xm}$. 
+
+The Root Mean Discrepancy is averaged over all $N$ number of observations 
+\begin{equation}
+ \label{eq:rmdr}
+ \mbox{RMDR} = \frac{1}{N} \sum_{i=1}^{N} \left( \log{ \frac{K_{xp_i}}{K_{xm_i}} } \right)^2 
+\end{equation} 
+% 
+where $K_{xp_i}$ and $K_{xm_i}$ are the prediction and observed dispersions.
+
+% %---------------------------------------------------------------------------------
+% \subsection{\label{sec:methods:evofs} Evolutionary Feature Selection Approach}
+% %---------------------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------------------
+\subsection{\label{sec:methods:gpr} Gaussian Processes Regression}
+%---------------------------------------------------------------------------------
+
+
+In Gaussian process regression (GPR), it is assumed the output $\hat{y}$ of a function  $f(\x)$ can be written as 
+\[
+ \hat{y} = f(\x) + \varepsilon
+\]
+with the noise term is considered as $\varepsilon \sim N(0, \sigma^2)$.
+The function $f(\x)$ is distributed as a Gaussian Process.
+A Gaussian Process (GP) is completely specified by its mean $m(\x)$ function and covariance function $k(\x, \mathbf{x'})$\cite{rasmussen:2006}
+\[
+ f(\x) \approx GPR (m(\x), k(\x, \mathbf{x'}))
+\]
+
+where mean function reflects the expected function value, and for simplicity, it is assumed to be zero.
+%
+The covariance function below  models the dependence between the function values at different input points  $\x$ and $\mathbf{x'}$ \cite{schulz:20181}:
+% $$||\x-\mathbf{x'}||$$
+\begin{equation}
+ \label{eq:gpr-kernel-matern}
+ k_{\nu}(||\x-\mathbf{x'}||) = \frac{2^{1-\nu}}{\Gamma(\nu)}  
+ \left( ||\x-\mathbf{x'}|| \sqrt{\frac{2\nu}{\theta}} \right)^{\nu} 
+ K_{\nu}\left( ||\x-\mathbf{x'}|| \sqrt{\frac{2\nu}{\theta} } \right)
+\end{equation}
+where $\nu$ and $\theta$ are positive parameters and $ K_{\nu}$ is the modified 
+Bessel function \cite{kumar:2020101986}.
+
+%----------------------------------------------------------------------------------
+\subsubsection{ Support Vector Regression -- SVR}
+%----------------------------------------------------------------------------------
+
+Support Vector Regression (SVR) is a  version of the Support Vector Machine  developed for regression analysis.  SVR  maps the input vectors $\x=[x_1, \dots, x_N]$ into a high dimensional  space where a linear machine build an optimal  function $f(\x)$
+%$$f(\x) = \sum_{i=1}^{N} w_i K(x_i,x) +b $$ 
+that minimizes the  functional \cite{were:2015}
+$$
+J = \frac{1}{N} \sum_{i=1}^{N} L_{\varepsilon} ( y_i - f(\x_i) ) 
+$$
+where
+$ L_{\varepsilon}$ is the loss function, which penalizes the model in case of differences between the training data and model predictions (errors) and
+$y_i$ is output data associated with $\x_i$.
+The  $\varepsilon$-insensitive loss function \cite{gunn:1998} 
+\[
+L_{\varepsilon}(y - f(\x))=
+\begin{cases}
+  0           \mbox{ if } |y - f(\x)|\le \varepsilon\\
+  |y - f(\x)|  \mbox{ otherwise }
+\end{cases}
+\] 
+where $\varepsilon$ is a SVR parameter. 
+
+This optimization problem can be transformed into a dual problem
+ \begin{equation}
+   \begin{array}{rl}
+     \max_{\alpha,  \alpha*}  & -\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N} 
+                                (\alpha_i-\alpha_i^*)(\alpha_j-\alpha_j^*)K(\x_i,\x_j)\\
+                             ~& -\varepsilon  \sum_{i=1}^{N} (\alpha_i+\alpha_i^*)
+                                -\varepsilon  \sum_{i=1}^{N} y_i(\alpha_i+\alpha_i^*)
+                                \\\\
+     \mbox{subject to}        &
+                               \begin{cases} 
+                                 \sum_{i=1}^{N} y_i(\alpha_i+\alpha_i^*)=0 
+                                 0\ge\alpha_i\ge C,\; 0\ge\alpha_i^*\ge C, \; i=1, ..., N
+                               \end{cases}
+   \end{array}
+   \label{eq:svr-04}
+ \end{equation}
+where $\alpha_i$ and $\alpha_i^*$ are the weights  which determine the influence of each data point on the model (support vectors were the data with non-zero weights), $K(x_i, x_j)$ is the kernel function, and $C$ is the regularization parameter, which determined the trade-off between the training errors and model complexity.
+
+The optimization problem is decomposed  into sub-problems, which were solved step by step. At each step, the algorithm selects two Lagrange multipliers, found their optimal values analytically, and updated the SVR function  \cite{were:2015}
+$$f(\x) = \sum_{i=1}^{N} (\alpha_i+\alpha_i^*) K(x_i,x_j) +b$$
+where $b$ is a constant threshold.
+The process was repeated until the Lagrange multipliers converged.
+The  radial basis kernel function of the form 
+\begin{equation}
+ \label{eq:svr-kernel}
+K(x_i,x) = \sum_{i=1}^{m} \exp(-\gamma \|x_i-x_j\|^2) )
+\end{equation}
+% 
+where $\gamma$ is the bandwidth parameter.
+
+% The   parameters $C$, $\varepsilon$ and $\gamma$ was carried out using the grid search method described in Section  \ref{sec:gscv}.
+
+%---------------------------------------------------------------------------------
+\section{\label{sec:results} Computational Experiments and Discussion}
+%---------------------------------------------------------------------------------
+
+The hybrid models proposed in this paper were applied to predict the coefficient of longitudinal dispersion, and their performance was compared with the models proposed in \cite{tayfur2005predicting}. 
+The selected features in the first step of the experiments are summarized in 
+Table \ref{tab:cases-features}.
+
+A feedforward artificial neural network was constructed to model LDC in \cite{tayfur2005predicting}. The number of layers and the number of neurons in each layer were found using a trial-and-error procedure.
+Case 0  considers all features to predict the dispersion coefficient of natural streams.
+Cases 1-7 follows the description in \cite{tayfur2005predicting}.
+Case 1  considers three features involving flow and geometric characteristics to model $K_x$: the flow velocity $U$, the flow depth $H$, and the channel width $B$.
+Case 2 employs only flow discharge $Q$ as the input feature.
+As the velocity plays an important role in the forecast of the effects of a pollutant spill, Case 3  considered only flow velocity $U$.
+Case 4 considered flow velocity $U$ and channel shape parameter $\beta$ as input variables, while Case 5 considered channel sinuosity $\sigma$ in the feature vector $\x^{FS}$ along with the channel shape parameter $\beta$ and flow velocity $U$.
+Case 6 considered only the relative shear velocity $U/u^*$.
+Finally, Case 7 considered the channel shaper parameter $\beta$ and channel sinuosity $\sigma$ along with the relative shear velocity $U/u*$ as input features.
+
+\begin{table}[!]
+    \centering
+    \caption{ \label{tab:cases-features} Input features associated with models tested in this paper.
+    Case 0 involves all input variables and Cases 1-7 were proposed by \cite{tayfur2005predicting}.
+    }
+    \begin{tabular}{ccl}
+    \hline
+      Case   & $\x^{FS}$ (fixed mask) & Active features                         \\ \hline
+      Case 0 &  11111111   & $U , H , B, u^*, Q, U/u^*, \beta,\sigma$\\ 
+      Case 1 &  11100000   & $U , H , B                             $\\
+      Case 2 &  00001000   & $Q                                     $\\
+      Case 3 &  10000000   & $U                                     $\\
+      Case 4 &  10000010   & $U, \beta                              $\\
+      Case 5 &  10000011   & $U, \beta, \sigma                      $\\
+      Case 6 &  00000100   & $U/u^*                                 $\\
+      Case 7 &  00000111   & $U/u^*, \beta, \sigma                  $\\ \hline
+    \end{tabular}
+\end{table}
+
+
+The computational experiments were divided into three parts:
+\begin{enumerate}
+
+\item Modeling LDC without feature selection. 
+ Perform experiments using the machine learning approach proposed considering all variables (Case 0) and reproduce the models presented in \cite{tayfur2005predicting} (Cases 1-7). 
+ For these experiments, the vector $\x^{FS}$ is kept constant, depending on the LDC model. Table \ref{tab:cases-features} shows all models ant the respective $\x^{FS}$ vector associated with the model. In this experiment, only the machine learning parametric vector $\x^{MB}$ is adjusted to fine-tunning the machine learning model.
+ 
+ \item Modeling LDC using evolutionary feature selection. 
+ Employ the hybrid approach shown in Figure \ref{fig:framework} to simultaneously search for the most suitable feature set and the model parameters. The feature selection allows for exploring combinations of features that are not presented in Table \ref{tab:cases-features}, and that can potentially produce better results when used as inputs for GPR and SVR. 
+ 
+ \item Modeling LDC with the most frequent features. 
+ Build machine learning models using the most frequent features found in the previous experiment, exploiting the previous knowledge on the features and model parameters to propose an accurate model.
+ 
+\end{enumerate}
+
+% % \rotatebox{90}{
+% \begin{table}[htp]
+% % \begin{sidewaystable}[!tbp]
+%  \centering
+%  \caption{\label{tab:sum-results} 
+%  To be inserted
+%  }
+% \input{./tables/eml_____comparison_datasets_table.tex}
+% % \end{sidewaystable} 
+% \end{table}
+% % }
+
+% %---------------------------------------------------------------------------------
+% \subsection{\label{sec:sub:hyb-results} Hybrid model results}
+% %---------------------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------------------
+\subsection{\label{sec:ldc-nfs} Modeling LDC without feature selection }
+%---------------------------------------------------------------------------------
+
+% \input{./tables/eml_____comparison_datasets_table_paper.tex}
+% \input{./tables/eml_____comparison_datasets_table.tex}
+  
+\begin{figure}[!]
+ \centering
+ \includegraphics[width=0.495\linewidth]{./results/eml____300dpi_comparison_datasets_metric_rmse_bar}
+ \includegraphics[width=0.495\linewidth]{./results/eml____300dpi_comparison_datasets_metric_accuracy_bar}
+ \includegraphics[width=0.495\linewidth]{./results/eml____300dpi_comparison_datasets_metric_rmsebh_50_bar}
+ \includegraphics[width=0.495\linewidth]{./results/eml____300dpi_comparison_datasets_metric_rmsek_x_100_bar}
+ \caption{
+ \label{fig:eml____300dpi_comparison_datasets_metric}
+ Longitudinal Dispersion Coefficient modeling using GPR and SVM.
+%  The variable setups  for Cases 1-7 were proposed in \cite{tayfur2005predicting}.
+ The results indicated with label REF were collected from \cite{tayfur2005predicting}. 
+%  The results for GPR and SVR were averaged over 100 independent runs.
+ }
+\end{figure}
+
+
+Figure \ref{fig:eml____300dpi_comparison_datasets_metric}
+compares the results for LDC modeling without feature selection.
+The variable setups are shown in Table \ref{tab:cases-features}.
+In this figure, the results for GPR and SVR were averaged over 100 independent runs.
+%  
+According to Figure \ref{fig:eml____300dpi_comparison_datasets_metric}, we can observe for Case 0, the average value of RMSE considerably lower than those produced by the reference model for both GPR and SVR models. The averaged accuracy obtained with GPR model was competitive with those produced by the reference model, but there was a decrease in performance for the accuracy of the SVR model. Notably, for
+the case where when the width-to-depth ratios are small than 50, the RMSE $(B/H<50)$ values were remarkably better than the reference model, representing a decrease of 64.9\% for the Gaussian process model and 67.8\% for the model of support vector machines. This finding shows that the hybrid method can provide accurate predictions for narrow channels. 
+On the other hand, the hybrid model did not produce better results than the reference model when the extreme values were not considered, as can be observed for root mean squared errors less than 100 m$^2$/s, RMSE $ (K_x <100)$. 
+
+The results for Case 1 are interesting since the features used as input variables in this model are a subset of the collected ones.  The features use in this model, $U$, $H$ and $B$, are those exhibit  higher correlations with the dispersion coefficient as can be seen in Figure \ref{fig:eml____300dpi_correlation_target___k_x}. Figure \ref{fig:eml____300dpi_scatter_target} show the strength of the linear relationships for $U$, $H$ and $B$.
+It is important to notice that, although informative, the linear correlation may not be able to represent the complex and nonlinear nature of LDC \cite{noori2016reliable}. 
+
+Considering the results in Figure \ref{fig:eml____300dpi_comparison_datasets_metric}, although GPR performed better in accuracy, SVR produced smaller RMSE when compared to GPR and the reference model.
+In addition, GPR predicts poorly the dispersion coefficient for narrow channels, as can be observed in the higher values for RMSE if $(B/H<50)$ compared to SVR.
+However, considerint the RMSE $(B/H<50)$, both models produced better predictions then the reference model. 
+% 
+\begin{figure}[h] 
+ \centering
+ \includegraphics[width=0.6\linewidth]{./results/eml____300dpi_correlation_target___k_x}
+ \caption{
+ \label{fig:eml____300dpi_correlation_target___k_x}
+ Correlation coefficients  using Spearman rank correlations between the eight input variables and the longitudinal dispersion coefficient.
+ } 
+\end{figure}
+% 
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=0.24\linewidth]{./results/eml____300dpi_scatter_target_u_k_x}
+ \includegraphics[width=0.24\linewidth]{./results/eml____300dpi_scatter_target_b_k_x}
+ \includegraphics[width=0.24\linewidth]{./results/eml____300dpi_scatter_target_h_k_x}
+ \caption{
+ \label{fig:eml____300dpi_scatter_target}
+ Scatter plots demonstrating visually the relationship among $U$, $B$, and $H$ features and the dispersion coefficient.
+ }
+\end{figure}
+
+
+For Cases 2, 3, and 6, the hybrid approach performed poorly. 
+It is interesting to notice that Case 2 involves the features implicitly in Case 1 since the flow discharge is the product of flow
+depth, velocity, and channel width, $Q = HUB$.  
+In addition, the linear correlation between the flow discharge and the dispersion can be discarded due to the small correlation as shown in Figure  \ref{fig:eml____300dpi_correlation_target___k_x}. 
+The models for Cases 2, 3, and 6 are built upon one variable, which is not enough to represent the nonlinear relationship between the single feature and the dispersion coefficient. The finding corroborates the results described in \cite{tayfur2005predicting}, that solely the flow discharge ($Q$), flow velocity ($U$), and the relative shear velocity ($u^*$) are not sufficient to predict the nonlinear behavior of the dispersion coefficient.
+
+Cases 4 is built upon Case 3, with the inclusion of the channel shape parameter ($\beta$) for Case 4, while in Case 5, the channel sinuosity is added to Case 4.
+The hybrid model performed similarly to the artificial neural network developed in the reference paper. However, it was not able to improve the results when compared to the previous cases.  
+
+Case 7 considered the relative shear velocity ($U/u^*$) as in Case 6,  and channel shape parameter ($\beta$)  along with the channel sinuosity ($\sigma$) to predict the dispersion coefficient. The metrics shown in Figure \ref{fig:eml____300dpi_comparison_datasets_metric} show the inclusion of the channel shape parameter and the channel sinuosity did not improve the $K_x$ estimations.
+
+
+The results depicted in Figure \ref{fig:eml____300dpi_comparison_datasets_metric} obtained after several independent runs allows for draw the following conclusions on the test Cases presented in Table \ref{tab:cases-features}. 
+% 
+From Cases 0-7, GPR and SVR  have produced the overall best results for Case 0 and Case 1, as can be seen in Figure \ref{fig:eml____300dpi_comparison_datasets_metric}. 
+Given the performance of the GPR and SVR models in Cases 0 and 1, the comparative analysis will be focused on these two cases.
+The Root Mean Squared Error of both models was inferior to the artificial neural network developed in \cite{tayfur2005predicting}. 
+In Case 0,  where the eight variables are taken into account, the GPR and SVR models showed an average reduction of 58.9\% and 58.8\% for the RMSE, respectively. Similar behavior was observed for narrow channels where $ B / H <50 $: the reduction was 35.1\% and 32.2\% for GPR and SVR, respectively. Also,  the averaged Accuracy for GPR  is only 3.24\% small them the reference model. We emphasize that the results are the average of 100 independent runs.
+
+In Case 1 the averaged RMSE  values obtained by GPR and SVR  were smaller than the RMSE attained by the reference model. However, the RMSE produced by GPR was higher than that provided by SVR. Similar behavior is observed for Root Mean Squared Error of narrow channels ($ B / H <50 $). For the same Case 1, GPR produced an averaged Accuracy of 70.09\% against 75\% for the reference model, resulting in a percentage difference of 6.55\% on average.  
+
+For Cases 0 and 1,  Figure \ref{fig:eml____300dpi_scatter_best_model___ldc} depicts the scatterplots of the predicted and estimated dispersion coefficient for the best models  in the test set (according to RMSE).
+Besides the RMSE, the accuracy and the coefficient of determination associated with each model are also shown. Although a few predicted $K_x$ present a visible error, the predictions for GPR and SVR models agree well with the observations. This can be verified by the R$^2$ values, above 0.90 for for GPR in Cases 0 and 1. For SVR, R$^2= 0.93$ for Case 0 and R$^2= 0.89$ for Case 1.
+%
+\begin{figure}[!] \centering 
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_0__test}
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_0__test}
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_1__test}
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_1__test}
+ \caption{\label{fig:eml____300dpi_scatter_best_model___ldc}
+ Scatter plots for the best models according to Root Mean Squared Error (RMSE).}
+\end{figure}
+ 
+In the computational experiments, a total of 100 independent runs were performed. As a consequence, it is interesting to analyze the distribution of the internal parameters in all executions.
+As Cases 0 and 1 produced better results compared to the other ones, the discussion is focused on these cases.
+% 
+Figure \ref{fig:eml____300dpi_comparison_datasets_parameters___gpr__test} shows for Cases 0-7 the distribution of the GPR parameters, namely, $k_0$, $\nu$, $l$,  and $\alpha$. The first three parameters control the  shape of the kernel shown in Equation \ref{eq:gpr-kernel-matern}  used to compute the estimations, while $\alpha$, which is added to the diagonal of the kernel matrix during fitting,  rules the level of noise in the observations.
+The parameter $ k_0 $ controls the magnitude of the GPR approximation and the final solutions showed similar distributions in cases 0 and 1.
+Similar behavior was noticed for the parameter $ \alpha $ which is associated with noise in the observations. The dispersion is a measure associated with a natural process, so that noise becomes an important factor in the estimates.
+The parameter $\nu$ is a critical paramater in the kernel function and controls the GPR smoothness \cite{stein-book:1999}: the smaller $\nu$ the less smooth the approximated solution is.
+The distribution of $\nu$ in Figure \ref{fig:eml____300dpi_comparison_datasets_parameters___gpr__test} shows the GPR estimation functions produced for case for Case 1 are smoother than Case 0. 
+In addition, the length scales $l$ for Case 1 are higher than Case 0 as well.
+These combined circumstances potentially led to the highest RMSE values for case 1, as can be seen in Figure \ref{fig:eml____300dpi_comparison_datasets_metric}.
+% 
+\begin{figure}[!] \centering
+  \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___gpr__k_0__test}
+  \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___gpr__nu__test}
+  \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___gpr__l__test}
+  \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___gpr__alpha__test}
+ \caption{\label{fig:eml____300dpi_comparison_datasets_parameters___gpr__test}
+ Distribution of the internal parameters for the GPR models over 100 independent runs. 
+ %The parameters and their respective ranges can be found in Table \ref{tab:cmaes__encoding}. 
+ }
+\end{figure}
+
+
+Figure \ref{fig:eml____300dpi_comparison_datasets_parameters___svr__test} displays the distribution of the SVR internal parameters $C$, $\gamma$ and $\varepsilon$.
+$C$ is the penalization parameter, $\varepsilon$ is the  specifies the penalization  associated in the training loss function,  and $\gamma$ is kernel coefficient in Equation (\ref{eq:svr-kernel}).
+Analyzing the boxplots, one can observe the distribution of the parameters $\gamma$ and $\varepsilon$ showed similar distributions in both cases.
+On the other hand, the values of parameter $C$  for Case 1 are higher than those found for Case 0.
+In support vector machines, $C$  plays an important role as a regularization parameter. The regularization strength is inversely proportional to $C$. As a result, the SVR estimations for Case 0 are smoother than those produced for Case 1. The smaller RMSE values for Case 1  shown in the barplots in Figure  \ref{fig:eml____300dpi_comparison_datasets_parameters___svr__test} (averaged in 100 runs) supports this interpretation. 
+% 
+\begin{figure}[!] \centering
+ \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___svr__c__test}
+ \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___svr__gamma__test}
+ \includegraphics[width=0.2449\linewidth]{./results/eml____300dpi_comparison_datasets_parameters___svr__varepsilon__test}
+ \caption{\label{fig:eml____300dpi_comparison_datasets_parameters___svr__test}
+ Distribution of the internal parameters for the SVR models over 100 independent runs. 
+ %The parameters and their respective ranges can be found in Table \ref{tab:cmaes__encoding}. 
+ }
+\end{figure}
+
+When compared to the reference model, it can be observed that  GPR and SVM  presented a lower performance in predicting the dispersion coefficient when the extreme values ( $K_x > 100$) are discarded for Cases 0 and 1.  One possible explanation to the deprecated performance of RMSE  for small $K_x$ is that those models do not explore in a suitable manner the relationship among the features for small dispersion values. For case 0, the interaction among the eight features might be not beneficial to estimate small $K_x$ values while for Case1 the features $U$, $B$, and $H$, that conserve linear relationship with the dispersion coefficient might not be enough to represent the nonlinearities of the dispersion coefficient. 
+% 
+Considering that the evolutionary strategy appropriately determines the parameters $ \x^{MB} $ of the models, an alternative is to choose a set of input variables that allow balancing the predictive resources with extreme values. Likewise, this set of variables should produce estimates with low RMSE values at high precision.
+
+%  \begin{figure}[!tbp]
+%   \centering 
+%  \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_0__test}
+%  \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_1__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_2__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_3__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_4__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_5__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_6__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_7__test}
+%  \caption{\label{fig:eml____300dpi_scatter_best_model___gpr__ldc}
+%  Scatter plots for the best models according to Root Mean Squared Error (RMSE) using the hybrid model.}
+% \end{figure}
+
+% \begin{figure}[!tbp]
+%  \centering 
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_0__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_1__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_2__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_3__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_4__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_5__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_6__test}
+% \includegraphics[width=0.3245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_7__test}
+% \caption{\label{fig:eml____300dpi_scatter_best_model___svr__ldc}
+% Scatter plots for the best models according to Root Mean Squared Error (RMSE) using the hybrid model.}
+% \end{figure}
+
+
+
+%---------------------------------------------------------------------------------
+\subsection{\label{sec:ldc-efs} Modeling LDC with evolutionary feature selection}
+%---------------------------------------------------------------------------------
+
+
+Considering the experiments in the last section, it is not clear whether other combinations of variables can lead to better results for RMSE and accuracy. Despite the explanation provided by the authors in their study \cite{tayfur2005predicting}, it can be argued that the variables associated with the cases shown in Table \ref{tab:cases-features} were chosen, in their major extent,  based on the correlation with the longitudinal dispersion coefficient. Figures \ref{fig:eml____300dpi_correlation_target___k_x} and \ref{fig:eml____300dpi_scatter_target} show that the variables with the highest correlations are those that comprise the sets in  Table \ref{tab:cases-features}.
+For example, the $U$ variable appears in 5 out of 8 cases. Besides, the variables $U$, $B$, and $H$ are part of Cases 1 and 2, which produced the best results.
+
+The hybrid approach developed here can search for the most suitable variables along with the estimator to explore combinations that not previously considered.  It can be noticed that due to the nonlinear natures of the estimators GPR and SVR,
+a careful choice of variables can produce an improved performance of the estimators. Moreover, variables with smalls correlations with LDC may positively impact the final predictions. The next experiments aim at analyzing the impact of the evolutionary feature selection on the assessment of the performance metrics on the LDC prediction.
+
+
+% 
+\begin{table}[!]
+\centering
+\caption{\label{tab:results_fs}  
+Hybrid evolutionary approach with feature selection.
+The best results are shown in boldface with standard deviation in parentheses. Values indicated with  -- were not available at the source.
+}
+\begin{tabular}{rrrrrr}
+\hline
+Case      & Estimator &                 RMSE &           Accuracy   &    RMSE$(K_x<100)$ &       RMSE$(B/H<50)$    \\\hline                                                               
+%    Case 0 &       REF &          193.00 (--) &           70.00 (--) &  { \bf 19.30} (--) &          183.00 (--)  \\
+%    Case 1 &       REF &         193.00  (--) &         75.00  (--)  &        21.20  (--) &         183.00  (--)  \\
+   Case 0 &       GPR &         99.70  (29.05) &         67.91 (5.05)&       31.80 (3.97) &          63.13 (10.63) \\
+          &       SVR &         112.34 (26.40) &         57.73 (7.06)&       41.23 (4.28) &         58.80 (7.58)   \\
+          &       REF &            193.00 (--) &    {     70.00} (--)&  { \bf 19.30} (--) &            183.00 (--) \\\\
+   Case 1 &       GPR &        167.34 (115.45) &         71.05 (6.19)&       41.28 (8.16) &         114.68 (98.36) \\
+          &       SVR &        113.22  (35.35) &         62.59 (5.96)&       45.18 (8.84) &          61.73 (14.43) \\
+          &       REF &            193.00 (--) &     {    75.00} (--)&  {     21.20} (--) &            183.00 (--) \\\\
+   --     &    GPR-FS &   { \bf 83.26} (26.41) & { \bf 76.73} (6.60) &       31.25 (5.18) &        52.41 (14.61)   \\
+   --     &    SVR-FS &          88.78 (13.66) &        65.77 (8.99) &       39.51 (8.42) &    { \bf 46.10} (7.21) \\
+%  Case 2 &       REF &         191.00  (--) &         65.00  (--) &        20.00  (--) &         179.00  (--) \\
+%  Case 3 &       REF &         170.00  (--) &         40.00  (--) &       146.00  (--) &         164.00  (--) \\
+%  Case 4 &       REF &         137.00  (--) &         70.00  (--) &       105.00  (--) &         118.00  (--) \\
+%  Case 5 &       REF &         119.00  (--) &         58.00  (--) &        77.70  (--) &          99.00  (--) \\
+%  Case 6 &       REF &         159.00  (--) &         50.00  (--) &       104.30  (--) &          42.00  (--) \\
+%  Case 7 &       REF &         142.00  (--) &         58.00  (--) &        93.80  (--) &          67.00  (--) \\
+\hline 
+\end{tabular} 
+\end{table}
+
+Table \ref{tab:results_fs} summarized the results obtained for GPR and SVR assitsed by feature selection in the pipeline shown in Figure \ref{fig:framework}.
+The first column shows the cases, and the second column displays the estimator. The Root Mean Squared Error is shown in the third column, while the Accuracy appears in the fourth column. The fifth two columns show the Root Mean Squared Error when extreme values are discarded and the last one the RMSE for narrow channels.
+% 
+Analyzing the results in Table  \ref{tab:results_fs}, it is possible to observe that the feature selection step on the pipeline has contributed considerably to improve the metrics produced by the machine learning methods. Table \ref{tab:results_fs} also shows the results for Cases 1 and 2 to compare the performance of the models when the feature selection was not applied.
+% 
+Overall, the RMSE values decreased for both GPR and SVR models. 
+As observed for the models without implementing feature selection, GPR-FS and SVR-FS produced smaller Root Mean Squared Errors than the reference model.
+GPR-FS model achieved, on average, an improvement of 16.5\% when compared to Case 0 and 50.2\% concerning Case 1. The improvement achieved by the model SVR-FS to Cases 0 and 1 were 21.0\% and 21.6\%, respectively.
+
+Regarding Accuracy, the SVR-FS model achieved a slight improvement over the SVR model. On the other hand, the GPR-FS model achieved a consistent improvement when compared to the model without feature selection. In particular, the averaged Accuracy is the highest among all models.
+% 
+When the extreme dispersion coefficients ($ K_x> 100 $) were excluded, there was no improvement in the RMSE for both methods. However, the evolutionary pipeline implementing  GPR and SVR models allowed us to reach the lowest RMSE values for narrow channels. In particular, the average values of RMSE achieved by the SVF-FS model can be highlighted, as can be seen in the last column of Table  \ref{tab:results_fs}.
+% 
+Figure \ref{fig:eml____300dpi_scatter_best_model_fs___ldc} depicts the scatter plots for the best GPR-FS and SVR-FS models, that were chosen according to the smaller RMSE.
+Considering GPR-FS, 
+it can be observed that RMSE deacreased while Accuracy increased
+when comparing the scatter plots from Figures
+\ref{fig:eml____300dpi_scatter_best_model___ldc}
+and 
+\ref{fig:eml____300dpi_scatter_best_model_fs___ldc}.
+
+\begin{figure}[!] \centering 
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr_fs__case_0__test}
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr_fs__case_0__test}
+ \caption{\label{fig:eml____300dpi_scatter_best_model_fs___ldc}
+ Scatter plots for the best models implementing evolutionary feature selection according to Root Mean Squared Error (RMSE).}
+\end{figure}
+
+The analysis of these results allows us to conclude that the feature selection step in the pipeline leads to a considerable improvement in the prediction of the dispersion coefficient. The proper selection of input variables is beneficial for the pipeline model as this interaction increases the accuracy while decreases the averaged errors.
+
+The results reported in Table \ref{tab:results_fs} allow us to assess the improvement in performance, but they do not show which variables led to these gains. Figure \ref{fig:eml____300dpi_active_features_sets_count} shows the distribution of the selected features after training the evolutionary pipeline.
+From this figure, one can observe that GPF-FS and SVR-FS chose a total of 13 sets of features at the end of the evolutionary search procedure. We observed the variable selection process is heuristic and there is no guarantee of choosing the same set of variables in all runs.
+% 
+The barplot on the left side shows that for  GPR-FS model, the set of variables $ B, U, \sigma, Q $ has been selected 24 times, the  $ B, U, \sigma $ was selected 18 times and  $ B, U, \sigma, \beta $ 13 times. These three sets were selected 55 out of 100 times, and they share the variables $ B, U $ and $ \sigma $.
+A similar analysis for the SVR-FS model in the bar graph of Figure \ref{fig:eml____300dpi_active_features_sets_count} shows that $ B, U, \sigma, \beta $ was chosen 33 times,  $ B, U, \sigma $ 20 times, and $ B, U, \sigma $ 12 times. These three sets were selected 74 times over the course of 100 independent executions, approximately two thirds of the total runs.
+% 
+\begin{figure}[!]
+    \centering 
+    \includegraphics[height=0.41\textheight]{./results/eml____300dpi_active_features_sets_gpr_fs__count}
+    \includegraphics[height=0.41\textheight]{./results/eml____300dpi_active_features_sets_svr_fs__count}
+    \caption{\label{fig:eml____300dpi_active_features_sets_count}
+    Distribution of sets of  active features for evolutionary feature selection approach over 100 runs.}
+\end{figure} 
+
+Figure \ref{fig:eml____300dpi_active_features_distribution__count} shows that $ U, \sigma, B, Q $ were the most frequent variables for the GPR-FS model, in that order. For the SVR-FS model, the most frequent ones were $ U, \sigma, B, \beta $, in this order as well.
+Moreover, for both models, the variables $ U $ and $ \sigma $ were select in all runs, while  $ B $  appears 98 times for the GPR-FS model and 96 times for the SVR-FS model.
+From most frequent variables, $ U $ and $ B $ have a strong correlation with the dispersion coefficient, whereas river sinuosity $ \sigma $ has the lowest correlation, as can be seen in Figure \ref{fig:eml____300dpi_active_features_distribution__count}. 
+In the context of the machine learnin pipeline the river sinuosity is a crucial feature to produce accurate predictions. This finding suggests that $\sigma$ holds a strong non-linear relationship that is beneficial for the performance of the GPR-FS and SVR-FS models.
+
+
+%---------------------------------------------------------------------------------
+\subsection{\label{sec:ldc-sfs} Modeling LDC using features suggested by evolutionary selection}
+%---------------------------------------------------------------------------------
+
+The computational experiments carried out in this study allow to indirectly determine the importance of variables for the evolutionary pipeline. 
+The results shown in Table  \ref{tab:results_fs} and  Figure \ref{fig:eml____300dpi_active_features_sets_count} suggest that some variables are part of a core that improve the learning of the the machine learning models.
+A detailed analysis of the frequency  the variables appear in the selected sets is presented in Figure \ref{fig:eml____300dpi_active_features_distribution__count}.
+Observing this figure it is possible to notice that the variable $ \sigma $ appears in all selected sets. The same occurs with the variable $ U $. 
+% 
+Based on this analysis, the most frequent variables that appear in Figure \ref{fig:eml____300dpi_active_features_distribution__count} were selected to propose the Cases, 
+which consists of the three most frequent features  $U, B$, and $\sigma$.
+The features in Case 8 are shown in Table \ref{tab:results_fs}.
+% Case 9 is made up of the three most frequent ones, $U, B, \sigma$ and $Q$.
+% $\beta$ was not included in Case 9, since  the a statistical analysis the the features shows
+% a correlation equals to 0.94 between $Q$ and $\beta$.
+
+\begin{figure}[!]
+    \centering 
+    \includegraphics[height=0.35\textheight]{./results/eml____300dpi_active_features_distribution_gpr_fs__count}
+    \includegraphics[height=0.35\textheight]{./results/eml____300dpi_active_features_distribution_svr_fs__count}
+    \caption{\label{fig:eml____300dpi_active_features_distribution__count}
+    Hybrid model using evolutionary feature selection approach.
+    Number of times each variable appears in the active sets  over 100 runs.}
+\end{figure}
+
+
+\begin{table}
+    \centering
+    \caption{ \label{tab:cases-features-fs} Feature sets suggested by the analysis of evolutonary feature selection.
+    }
+    \begin{tabular}{ccl}
+    \hline
+        Case   & $\x^{FS}$ & Active variables                             \\ \hline
+        Case 8 &  10100001  & $U ,     B,                      \sigma$    \\ \hline
+%         Case 9 &  10101001  & $U ,     B,      Q,              \sigma$    \\ 
+\end{tabular}
+\end{table}
+
+A set of computational experiments have been conducted on the Case 8, 
+where the the machine learning methods were trained using the  features  $U, B$, and $\sigma$.
+The results in Table \ref{tab:results_new_set} shows the improvement of all metrics. 
+The averaged values produced for all metrics shows the improvement for GPR  concerning the Root Mean Squared Error, Accuracy and RMSE for dispersion coefficients below 100 m$^2$/s.
+% 
+This expected because the carefully choosing process of the most frequent variables  represents the indirect introduction of specific knowledge about the features. 
+In addition, this specific knowledge could only be obtained after analyzing the various simulations carried out with the evolutionary selection model.
+The most frequent variables allow capturing the essential behavior of the dispersion coefficient allowing the effective modeling of the LDC by the machine learning models. 
+However, when this knowledge is not available before carrying out the estimations, the feature selection step in the pipeline is indispensable.
+
+ 
+\begin{table}[!]
+\centering
+\caption{\label{tab:results_new_set}  
+LDC modeling with features suggest  by the evolutionary selection.
+The best results are shown in boldface with standard deviation in parentheses. 
+% Values indicated with  -- were not available at the source.
+}
+\begin{tabular}{rrrrrr}
+\hline
+Case      & Estimator &                 RMSE &           Accuracy   &    RMSE$(K_x<100)$ &       RMSE$(B/H<50)$    \\\hline                                                               
+%    Case 0 &       REF &          193.00 (--) &           70.00 (--) &  { \bf 19.30} (--) &          183.00 (--)  \\
+%    Case 1 &       REF &         193.00  (--) &         75.00  (--)  &        21.20  (--) &         183.00  (--)  \\
+%    Case0 &       GPR &         99.70  (29.05) &         67.91 (5.05)&       31.80 (3.97) &          63.13 (10.63) \\
+%           &       SVR &         112.34 (26.40) &         57.73 (7.06)&       41.23 (4.28) &         58.80 (7.58)   \\
+%           &       REF &            193.00 (--) &    {     70.00} (--)&  { \bf 19.30} (--) &            183.00 (--) \\\\
+%    Case 1 &       GPR &        167.34 (115.45) &         71.05 (6.19)&       41.28 (8.16) &         114.68 (98.36) \\
+%           &       SVR &        113.22  (35.35) &         62.59 (5.96)&       45.18 (8.84) &          61.73 (14.43) \\
+%           &       REF &            193.00 (--) &     {    75.00} (--)&  {     21.20} (--) &            183.00 (--) \\\\
+   --     &    GPR-FS &   {     83.26} (26.41) & {     76.73} (6.60) &       31.25 (5.18) &        52.41 (14.61)   \\
+   --     &    SVR-FS &          88.78 (13.66) &        65.77 (8.99) &       39.51 (8.42) &    {     46.10} (7.21) \\\\
+ Case 8 &       GPR &  { \bf 82.86} (24.41) &  { \bf 77.50} (5.43)&  { \bf 28.85} (4.83) &        53.12 (15.56)  \\
+ Case 8 &       SVR &         94.07 (15.45) &         73.27 (4.33)&         32.97 (7.97) &  { \bf  42.06} (7.97)  \\
+\hline 
+\end{tabular} 
+\end{table}
+
+Figure \ref{fig:eml____300dpi_scatter_best_model_new___ldc} shows the scatter plots for the best models in Case 8 according to RMSE.
+The plots of the predicted and observed dispersion coefficients show the models yelds accurate resutls.
+
+\begin{figure}[!] \centering 
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___gpr__case_8__test}
+ \includegraphics[width=0.33245\textwidth]{./scatter/eml____300dpi_scatter_best_model___svr__case_8__test}
+ \caption{\label{fig:eml____300dpi_scatter_best_model_new___ldc}
+ Scatter plots for the best models in Case 8 according to Root Mean Squared Error.}
+\end{figure}
+
+
+%---------------------------------------------------------------------------------
+\section{\label{sec:conclusions} Conclusions}
+%---------------------------------------------------------------------------------
+
+
+Further research include multiobjective feature selection \cite{jimenez:2017}.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

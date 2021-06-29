@@ -1,0 +1,489 @@
+\begin{thebibliography}{10}
+
+\bibitem{noori2007assessment}
+Rooholah Noori, Reza Kerachian, Ahmad~Khodadadi Darban, and Ahmad Shakibaienia.
+\newblock Assessment of importance of water quality monitoring stations using
+  principal components analysis and factor analysis: a case study of the karoon
+  river.
+\newblock {\em J. of Water and Wastewater}, 63:60--69, 2007.
+
+\bibitem{tayfur2005predicting}
+Gokmen Tayfur and Vijay~P Singh.
+\newblock Predicting longitudinal dispersion coefficient in natural streams by
+  artificial neural network.
+\newblock {\em Journal of Hydraulic Engineering}, 131(11):991--1000, 2005.
+
+\bibitem{riahi2009expert}
+Hossien Riahi-Madvar, Seyed~Ali Ayyoubzadeh, Ehsan Khadangi, and Mohammad~Mehdi
+  Ebadzadeh.
+\newblock An expert system for predicting longitudinal dispersion coefficient
+  in natural streams by using anfis.
+\newblock {\em Expert Systems with Applications}, 36(4):8589--8596, 2009.
+
+\bibitem{kashefipour2002longitudinal}
+Seyed~M Kashefipour and Roger~A Falconer.
+\newblock Longitudinal dispersion coefficients in natural channels.
+\newblock {\em Water Research}, 36(6):1596--1608, 2002.
+
+\bibitem{etemad2012predicting}
+Amir Etemad-Shahidi and Milad Taghipour.
+\newblock Predicting longitudinal dispersion coefficient in natural streams
+  using m5 model tree.
+\newblock {\em Journal of hydraulic engineering}, 138(6):542--554, 2012.
+
+\bibitem{hamidifar2015longitudinal}
+Hossein Hamidifar, Mohammad~Hossein Omid, and Alireza Keshavarzi.
+\newblock Longitudinal dispersion in waterways with vegetated floodplain.
+\newblock {\em Ecological engineering}, 84:398--407, 2015.
+
+\bibitem{dehghani2020novel}
+Majid Dehghani, Mansoor Zargar, Hossien Riahi-Madvar, and Rasoul Memarzadeh.
+\newblock A novel approach for longitudinal dispersion coefficient estimation
+  via tri-variate archimedean copulas.
+\newblock {\em Journal of Hydrology}, 584:124662, 2020.
+
+\bibitem{wang2017physically}
+Yu-Fei Wang, Wen-Xin Huai, and Wei-Jie Wang.
+\newblock Physically sound formula for longitudinal dispersion coefficients of
+  natural rivers.
+\newblock {\em Journal of Hydrology}, 544:511--523, 2017.
+
+\bibitem{farzadkhoo2018comparative}
+Maryam Farzadkhoo, Alireza Keshavarzi, Hossein Hamidifar, and Mahmood Javan.
+\newblock A comparative study of longitudinal dispersion models in rigid
+  vegetated compound meandering channels.
+\newblock {\em Journal of environmental management}, 217:78--89, 2018.
+
+\bibitem{baek2019deriving}
+Kyong~Oh Baek.
+\newblock Deriving longitudinal dispersion coefficient based on shiono and
+  knight model in open channel.
+\newblock {\em Journal of Hydraulic Engineering}, 145(3):06019001, 2019.
+
+\bibitem{farzadkhoo2019flow}
+Maryam Farzadkhoo, Alireza Keshavarzi, Hossein Hamidifar, and James Ball.
+\newblock Flow and longitudinal dispersion in channel with partly rigid
+  floodplain vegetation.
+\newblock In {\em Proceedings of the Institution of Civil Engineers-Water
+  Management}, volume 172, pages 229--240. Thomas Telford Ltd, 2019.
+
+\bibitem{alizadeh2017improvement}
+Mohamad~Javad Alizadeh, Davoud Ahmadyar, and Ali Afghantoloee.
+\newblock Improvement on the existing equations for predicting longitudinal
+  dispersion coefficient.
+\newblock {\em Water resources management}, 31(6):1777--1794, 2017.
+
+\bibitem{noori2016reliable}
+Roohollah Noori, Zhiqiang Deng, Amin Kiaghadi, and Fatemeh~Torabi Kachoosangi.
+\newblock How reliable are ann, anfis, and svm techniques for predicting
+  longitudinal dispersion coefficient in natural rivers?
+\newblock {\em Journal of Hydraulic Engineering}, 142(1):04015039, 2016.
+
+\bibitem{noori2011framework}
+R~Noori, AR~Karbassi, H~Mehdizadeh, M~Vesali-Naseh, and MS~Sabahi.
+\newblock A framework development for predicting the longitudinal dispersion
+  coefficient in natural streams using an artificial neural network.
+\newblock {\em Environmental Progress \& Sustainable Energy}, 30(3):439--449,
+  2011.
+
+\bibitem{perucca2009estimation}
+Eliana Perucca, Carlo Camporeale, and Luca Ridolfi.
+\newblock Estimation of the dispersion coefficient in rivers with riparian
+  vegetation.
+\newblock {\em Advances in Water Resources}, 32(1):78--87, 2009.
+
+\bibitem{wang2016estimating}
+Yufei Wang and Wenxin Huai.
+\newblock Estimating the longitudinal dispersion coefficient in straight
+  natural rivers.
+\newblock {\em Journal of Hydraulic Engineering}, 142(11):04016048, 2016.
+
+\bibitem{data2019estimation}
+Coefficient Using Field~Experimental Data.
+\newblock Estimation of longitudinal dispersion coefficient using field
+  experimental data and 1d numerical model of solute transport.
+\newblock In {\em Advanced Technologies, Systems, and Applications
+  IV-Proceedings of the International Symposium on Innovative and
+  Interdisciplinary Applications of Advanced Technologies (IAT 2019)},
+  volume~83, page 305. Springer, 2019.
+
+\bibitem{milivsic2019estimation}
+Hata Mili{\v{s}}i{\'c}, Emina Had{\v{z}}i{\'c}, and Suvada Jusi{\'c}.
+\newblock Estimation of longitudinal dispersion coefficient using field
+  experimental data and 1d numerical model of solute transport.
+\newblock In {\em International Symposium on Innovative and Interdisciplinary
+  Applications of Advanced Technologies}, pages 305--323. Springer, 2019.
+
+\bibitem{deng2001longitudinal}
+Zhi-Qiang Deng, Vijay~P Singh, and Lars Bengtsson.
+\newblock Longitudinal dispersion coefficient in straight rivers.
+\newblock {\em Journal of hydraulic engineering}, 127(11):919--927, 2001.
+
+\bibitem{deng2002longitudinal}
+Z-Q Deng, Lars Bengtsson, VP~Singh, and DD~Adrian.
+\newblock Longitudinal dispersion coefficient in single-channel streams.
+\newblock {\em Journal of Hydraulic Engineering}, 128(10):901--916, 2002.
+
+\bibitem{seo2004estimation}
+Il~Won Seo and Kyong~Oh Baek.
+\newblock Estimation of the longitudinal dispersion coefficient using the
+  velocity profile in natural streams.
+\newblock {\em Journal of hydraulic engineering}, 130(3):227--236, 2004.
+
+\bibitem{shin2019longitudinal}
+Jaehyun Shin, Il~Won Seo, and Donghae Baek.
+\newblock Longitudinal and transverse dispersion coefficients of 2d contaminant
+  transport model for mixing analysis in open channels.
+\newblock {\em Journal of Hydrology}, page 124302, 2019.
+
+\bibitem{seo1998predicting}
+Il~Won Seo and Tae~Sung Cheong.
+\newblock Predicting longitudinal dispersion coefficient in natural streams.
+\newblock {\em Journal of hydraulic engineering}, 124(1):25--32, 1998.
+
+\bibitem{swamee2000empirical}
+Prabhata~K Swamee, Santosh~K Pathak, and Mohammad Sohrab.
+\newblock Empirical relations for longitudinal dispersion in streams.
+\newblock {\em Journal of Environmental Engineering}, 126(11):1056--1062, 2000.
+
+\bibitem{zeng2014estimation}
+Yuhong Zeng and Wenxin Huai.
+\newblock Estimation of longitudinal dispersion coefficient in rivers.
+\newblock {\em Journal of hydro-environment research}, 8(1):2--8, 2014.
+
+\bibitem{disley2015predictive}
+T~Disley, B~Gharabaghi, AA~Mahboubi, and EA~McBean.
+\newblock Predictive equation for longitudinal dispersion coefficient.
+\newblock {\em Hydrological processes}, 29(2):161--172, 2015.
+
+\bibitem{camacho2019quantifying}
+VV~Camacho~Suarez, ANA Schellart, W~Brevis, and JD~Shucksmith.
+\newblock Quantifying the impact of uncertainty within the longitudinal
+  dispersion coefficient on concentration dynamics and regulatory compliance in
+  rivers.
+\newblock {\em Water Resources Research}, 55(5):4393--4409, 2019.
+
+\bibitem{altunkaynak2016prediction}
+Abdusselam Altunkaynak.
+\newblock Prediction of longitudinal dispersion coefficient in natural streams
+  by prediction map.
+\newblock {\em Journal of hydro-environment research}, 12:105--116, 2016.
+
+\bibitem{nezaratian2018sensitivity}
+Hosein Nezaratian, Javad Zahiri, and Seyed~Mahmood Kashefipour.
+\newblock Sensitivity analysis of empirical and data-driven models on
+  longitudinal dispersion coefficient in streams.
+\newblock {\em Environmental Processes}, 5(4):833--858, 2018.
+
+\bibitem{sahin2014empirical}
+Sinan Sahin.
+\newblock An empirical approach for determining longitudinal dispersion
+  coefficients in rivers.
+\newblock {\em Environmental Processes}, 1(3):277--285, 2014.
+
+\bibitem{tutmez2013regression}
+Bulent Tutmez and Mehmet Yuceer.
+\newblock Regression kriging analysis for longitudinal dispersion coefficient.
+\newblock {\em Water resources management}, 27(9):3307--3318, 2013.
+
+\bibitem{shen2010estimating}
+Chaopeng Shen, Jie Niu, Eric~J Anderson, and Mantha~S Phanikumar.
+\newblock Estimating longitudinal dispersion in rivers using acoustic doppler
+  current profilers.
+\newblock {\em Advances in Water Resources}, 33(6):615--623, 2010.
+
+\bibitem{sharafati2019application}
+Ahmad Sharafati, Masoud Haghbin, Davide Motta, and Zaher~Mundher Yaseen.
+\newblock The application of soft computing models and empirical formulations
+  for hydraulic structure scouring depth simulation: A comprehensive review,
+  assessment and possible future research direction.
+\newblock {\em Archives of Computational Methods in Engineering}, pages 1--25,
+  2019.
+
+\bibitem{tayfur2006fuzzy}
+Gokmen Tayfur.
+\newblock Fuzzy, ann, and regression models to predict longitudinal dispersion
+  coefficient in natural streams.
+\newblock {\em Hydrology Research}, 37(2):143--164, 2006.
+
+\bibitem{fuat2007longitudinal}
+Z~Fuat~Toprak and M~Emin Savci.
+\newblock Longitudinal dispersion coefficient modeling in natural channels
+  using fuzzy logic.
+\newblock {\em CLEAN--Soil, Air, Water}, 35(6):626--637, 2007.
+
+\bibitem{toprak2008predicting}
+Z~Fuat Toprak and Hikmet~Kerem Cigizoglu.
+\newblock Predicting longitudinal dispersion coefficient in natural streams by
+  artificial intelligence methods.
+\newblock {\em Hydrological Processes: An International Journal},
+  22(20):4106--4129, 2008.
+
+\bibitem{noori2009predicting}
+Roohollah Noori, Abdulreza Karbassi, Ashkan Farokhnia, and Majid Dehghani.
+\newblock Predicting the longitudinal dispersion coefficient using support
+  vector machine and adaptive neuro-fuzzy inference system techniques.
+\newblock {\em Environmental Engineering Science}, 26(10):1503--1510, 2009.
+
+\bibitem{shieh2010development}
+Hung-Yu Shieh, Jui-Sheng Chen, Chun-Nan Lin, Wei-Kuang Wang, and Chen-Wuing
+  Liu.
+\newblock Development of an artificial neural network model for determination
+  of longitudinal and transverse dispersivities in a convergent flow tracer
+  test.
+\newblock {\em Journal of hydrology}, 391(3-4):367--376, 2010.
+
+\bibitem{sahay2011prediction}
+Rajeev~Ranjan Sahay.
+\newblock Prediction of longitudinal dispersion coefficients in natural rivers
+  using artificial neural network.
+\newblock {\em Environmental Fluid Mechanics}, 11(3):247--261, 2011.
+
+\bibitem{azamathulla2011support}
+H~Md Azamathulla and Fu-Chun Wu.
+\newblock Support vector machine approach for longitudinal dispersion
+  coefficients in natural streams.
+\newblock {\em Applied Soft Computing}, 11(2):2902--2905, 2011.
+
+\bibitem{tu2015ant}
+Qin Tu, Hong Li, Xinkun Wang, and Chao Chen.
+\newblock Ant colony optimization for the design of small-scale irrigation
+  systems.
+\newblock {\em Water Resources Management}, 29(7):2323--2339, 2015.
+
+\bibitem{sattar2014gene}
+Ahmed~MA Sattar.
+\newblock Gene expression models for the prediction of longitudinal dispersion
+  coefficients in transitional and turbulent pipe flow.
+\newblock {\em Journal of Pipeline Systems Engineering and Practice},
+  5(1):04013011, 2014.
+
+\bibitem{najafzadeh2015neuro}
+Mohammad Najafzadeh and Ahmed~MA Sattar.
+\newblock Neuro-fuzzy gmdh approach to predict longitudinal dispersion in water
+  networks.
+\newblock {\em Water Resources Management}, 29(7):2205--2219, 2015.
+
+\bibitem{sattar2015gene}
+Ahmed~MA Sattar and Bahram Gharabaghi.
+\newblock Gene expression models for prediction of longitudinal dispersion
+  coefficient in streams.
+\newblock {\em Journal of Hydrology}, 524:587--596, 2015.
+
+\bibitem{parsaie2015predicting}
+Abbas Parsaie and Amir~Hamzeh Haghiabi.
+\newblock Predicting the longitudinal dispersion coefficient by radial basis
+  function neural network.
+\newblock {\em Modeling earth systems and environment}, 1(4):34, 2015.
+
+\bibitem{najafzadeh2016evaluation}
+Mohammad Najafzadeh and Ali Tafarojnoruz.
+\newblock Evaluation of neuro-fuzzy gmdh-based particle swarm optimization to
+  predict longitudinal dispersion coefficient in rivers.
+\newblock {\em Environmental Earth Sciences}, 75(2):157, 2016.
+
+\bibitem{haghiabi2016prediction}
+Amir~Hamzeh Haghiabi.
+\newblock Prediction of longitudinal dispersion coefficient using multivariate
+  adaptive regression splines.
+\newblock {\em Journal of Earth System Science}, 125(5):985--995, 2016.
+
+\bibitem{alizadeh2017predicting}
+MJ~Alizadeh, A~Shabani, and MR~Kavianpour.
+\newblock Predicting longitudinal dispersion coefficient using ann with
+  metaheuristic training algorithms.
+\newblock {\em International journal of environmental science and technology},
+  14(11):2399--2410, 2017.
+
+\bibitem{alizadeh2017prediction}
+Mohamad~Javad Alizadeh, Hosein Shahheydari, Mohammad~Reza Kavianpour, Hamid
+  Shamloo, and Reza Barati.
+\newblock Prediction of longitudinal dispersion coefficient in natural rivers
+  using a cluster-based bayesian network.
+\newblock {\em Environmental Earth Sciences}, 76(2):86, 2017.
+
+\bibitem{balf2018evolutionary}
+Mohammad~Rezaie Balf, Roohollah Noori, Ronny Berndtsson, Alireza Ghaemi, and
+  Behzad Ghiasi.
+\newblock Evolutionary polynomial regression approach to predict longitudinal
+  dispersion coefficient in rivers.
+\newblock {\em Journal of Water Supply: Research and Technology-Aqua},
+  67(5):447--457, 2018.
+
+\bibitem{parsaie2018anfis}
+Abbas Parsaie, Samad Emamgholizadeh, Hazi~Mohammad Azamathulla, and Amir~Hamzeh
+  Haghiabi.
+\newblock Anfis-based pca to predict the longitudinal dispersion coefficient in
+  rivers.
+\newblock {\em International Journal of Hydrology Science and Technology},
+  8(4):410--424, 2018.
+
+\bibitem{riahi2019pareto}
+Hossien Riahi-Madvar, Majid Dehghani, Akram Seifi, and Vijay~P Singh.
+\newblock Pareto optimal multigene genetic programming for prediction of
+  longitudinal dispersion coefficient.
+\newblock {\em Water resources management}, 33(3):905--921, 2019.
+
+\bibitem{ghiasi2019granular}
+Behzad Ghiasi, Hossein Sheikhian, Amin Zeynolabedin, and Mohammad~Hossein
+  Niksokhan.
+\newblock Granular computing--neural network model for prediction of
+  longitudinal dispersion coefficients in rivers.
+\newblock {\em Water Science and Technology}, 80(10):1880--1892, 2019.
+
+\bibitem{saberi2020receiving}
+Farid Saberi-Movahed, Mohammad Najafzadeh, and Adel Mehrpooya.
+\newblock Receiving more accurate predictions for longitudinal dispersion
+  coefficients in water pipelines: Training group method of data handling using
+  extreme learning machine conceptions.
+\newblock {\em Water Resources Management}, 34(2):529--561, 2020.
+
+\bibitem{kargar2020estimating}
+Katayoun Kargar, Saeed Samadianfard, Javad Parsa, Narjes Nabipour, Shahaboddin
+  Shamshirband, Amir Mosavi, and Kwok-wing Chau.
+\newblock Estimating longitudinal dispersion coefficient in natural streams
+  using empirical models and machine learning algorithms.
+\newblock {\em Engineering Applications of Computational Fluid Mechanics},
+  14(1):311--322, 2020.
+
+\bibitem{memarzadeh2020novel}
+Rasoul Memarzadeh, Hossein~Ghayoumi Zadeh, Majid Dehghani, Hossien
+  Riahi-Madvar, Akram Seifi, and Seyed~Mostafa Mortazavi.
+\newblock A novel equation for longitudinal dispersion coefficient prediction
+  based on the hybrid of ssmd and whale optimization algorithm.
+\newblock {\em Science of The Total Environment}, 716:137007, 2020.
+
+\bibitem{riahi2020improvements}
+Hossien Riahi-Madvar, Majid Dehghani, Kulwinder~Singh Parmar, et~al.
+\newblock Improvements in the explicit estimation of pollutant dispersion
+  coefficient in rivers by subset selection of maximum dissimilarity hybridized
+  with anfis-firefly algorithm (ffa).
+\newblock {\em IEEE Access}, 2020.
+
+\bibitem{ghiasi:2020}
+Behzad Ghiasi, Hossein Sheikhian, Amin Zeynolabedin, and Mohammad~Hossein
+  Niksokhan.
+\newblock {Granular computing–neural network model for prediction of
+  longitudinal dispersion coefficients in rivers}.
+\newblock {\em Water Science and Technology}, 80(10):1880--1892, 01 2020.
+
+\bibitem{katayoun:2020}
+Katayoun Kargar, Saeed Samadianfard, Javad Parsa, Narjes Nabipour, Shahaboddin
+  Shamshirband, Amir Mosavi, and Kwok wing Chau.
+\newblock Estimating longitudinal dispersion coefficient in natural streams
+  using empirical models and machine learning algorithms.
+\newblock {\em Engineering Applications of Computational Fluid Mechanics},
+  14(1):311--322, 2020.
+
+\bibitem{memarzadeh:2020}
+Rasoul Memarzadeh, Hossein~Ghayoumi Zadeh, Majid Dehghani, Hossien
+  Riahi-Madvar, Akram Seifi, and Seyed~Mostafa Mortazavi.
+\newblock A novel equation for longitudinal dispersion coefficient prediction
+  based on the hybrid of {SSMD} and whale optimization algorithm.
+\newblock {\em Science of The Total Environment}, 716:137007, 2020.
+
+\bibitem{piotrowski:2012}
+Adam~P. Piotrowski, Pawel~M. Rowinski, and Jaroslaw~J. Napiorkowski.
+\newblock Comparison of evolutionary computation techniques for noise injected
+  neural network training to estimate longitudinal dispersion coefficients in
+  rivers.
+\newblock {\em Expert Systems with Applications}, 39(1):1354 -- 1361, 2012.
+
+\bibitem{sahay:2013}
+Rajeev~Ranjan Sahay.
+\newblock Predicting longitudinal dispersion coefficients in sinuous rivers by
+  genetic algorithm.
+\newblock {\em Journal of Hydrology and Hydromechanics}, 61(3):214 -- 221,
+  2013.
+
+\bibitem{liu:201748}
+Shixia Liu, Xiting Wang, Mengchen Liu, and Jun Zhu.
+\newblock Towards better analysis of machine learning models: A visual
+  analytics perspective.
+\newblock {\em Visual Informatics}, 1(1):48 -- 56, 2017.
+
+\bibitem{tan:2020}
+Ping Tan, Xin Wang, and Yong Wang.
+\newblock Dimensionality reduction in evolutionary algorithms-based feature
+  selection for motor imagery brain-computer interface.
+\newblock {\em Swarm and Evolutionary Computation}, 52:100597, 2020.
+
+\bibitem{cai:201870}
+Jie Cai, Jiawei Luo, Shulin Wang, and Sheng Yang.
+\newblock Feature selection in machine learning: A new perspective.
+\newblock {\em Neurocomputing}, 300:70 -- 79, 2018.
+
+\bibitem{mirzaei:2017}
+Ali Mirzaei, Yalda Mohsenzadeh, and Hamid Sheikhzadeh.
+\newblock Variational relevant sample-feature machine: A fully bayesian
+  approach for embedded feature selection.
+\newblock {\em Neurocomputing}, 241:181 -- 190, 2017.
+
+\bibitem{rasmussen:2006}
+CE. Rasmussen and CKI. Williams.
+\newblock {\em Gaussian Processes for Machine Learning}.
+\newblock Adaptive Computation and Machine Learning. MIT Press, Cambridge, MA,
+  USA, January 2006.
+
+\bibitem{schulz:20181}
+Eric Schulz, Maarten Speekenbrink, and Andreas Krause.
+\newblock A tutorial on gaussian process regression: Modelling, exploring, and
+  exploiting functions.
+\newblock {\em Journal of Mathematical Psychology}, 85:1 -- 16, 2018.
+
+\bibitem{kumar:2020101986}
+Rahul Kumar.
+\newblock The generalized modified bessel function and its connection with
+  voigt line profile and humbert functions.
+\newblock {\em Advances in Applied Mathematics}, 114:101986, 2020.
+
+\bibitem{were:2015}
+Kennedy Were, Dieu~Tien Bui, Øystein B.~Dick, and Bal~Ram Singh.
+\newblock A comparative assessment of support vector regression, artificial
+  neural networks, and random forests for predicting and mapping soil organic
+  carbon stocks across an afromontane landscape.
+\newblock {\em Ecological Indicators}, 52:394 -- 403, 2015.
+
+\bibitem{gunn:1998}
+Steve~R Gunn et~al.
+\newblock Support vector machines for classification and regression.
+\newblock {\em ISIS technical report}, 14, 1998.
+
+\bibitem{stein-book:1999}
+Michael~L. Stein.
+\newblock {\em Interpolation of Spatial Data: Some Theory for Kriging}.
+\newblock Springer Series in Statistics. Springer-Verlag New York, 1 edition,
+  1999.
+
+\bibitem{camporeale:2010}
+Carlo Camporeale and Luca Ridolfi.
+\newblock Interplay among river meandering, discharge stochasticity and
+  riparian vegetation.
+\newblock {\em Journal of Hydrology}, 382(1):138 -- 144, 2010.
+
+\bibitem{savickis:2016}
+J.~Savickis, A.~Bottacin-Busolin, M.~Zaramella, N.~Sabokrouhiyeh, and
+  A.~Marion.
+\newblock Effect of a meandering channel on wetland performance.
+\newblock {\em Journal of Hydrology}, 535:204 -- 210, 2016.
+
+\bibitem{timar:2003}
+Gábor Timár.
+\newblock Controls on channel sinuosity changes: a case study of the tisza
+  river, the great hungarian plain.
+\newblock {\em Quaternary Science Reviews}, 22(20):2199 -- 2207, 2003.
+\newblock Fluvial response to rapid environmental change.
+
+\bibitem{dijk2013sinuosity}
+W.~M. van Dijk, R.~Teske, W.~I. van~de Lageweg, and M.~G. Kleinhans.
+\newblock Effects of vegetation distribution on experimental river channel
+  dynamics.
+\newblock {\em Water Resources Research}, 49(11):7558--7574, 2013.
+
+\bibitem{jimenez:2017}
+F.~Jiménez, G.~Sánchez, J.M. García, G.~Sciavicco, and L.~Miralles.
+\newblock Multi-objective evolutionary feature selection for online sales
+  forecasting.
+\newblock {\em Neurocomputing}, 234:75 -- 92, 2017.
+
+\end{thebibliography}

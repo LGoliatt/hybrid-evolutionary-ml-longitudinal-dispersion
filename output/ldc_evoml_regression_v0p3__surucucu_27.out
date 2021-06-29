@@ -1,0 +1,19 @@
+
+================================================================================
+Dataset                    : LDC case 0 -- Kx
+Number of training samples : 49
+Number of testing  samples : 22
+Number of features         : 8
+Normalization              : MinMax
+Task                       : regression
+Reference                  : t.ly/jJP6J
+================================================================================
+
+--------------------------------------------------------------------------------
+Estimator                  : SVR
+Function                   : <function fun_svr_fs at 0x7f35d8e291e0>
+Run                        : 27
+Random seed                : 127
+Optimizer                  : CMA-ES: Covariance Matrix Adaptation Evolutionary Strategy
+--------------------------------------------------------------------------------
+
