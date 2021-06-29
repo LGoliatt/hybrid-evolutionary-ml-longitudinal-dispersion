@@ -380,7 +380,6 @@ for run in range(run0, n_runs):
                 pk=pk.replace('(','_').replace(")","_").lower()
                 pk=pk.replace('[','_').replace("]","_").lower()
                 pk=pk.replace('-','_').replace("$","").lower()
-                #print(pk)
                 data.to_pickle(pk)
                 
 ##%%----------------------------------------------------------------------------
