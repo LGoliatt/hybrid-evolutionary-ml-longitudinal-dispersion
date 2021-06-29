@@ -36,7 +36,7 @@ if len(arguments)>0:
         run0 = int(arguments[1])
         n_runs = run0+1
 else:
-    run0, n_runs = 0,10
+    run0, n_runs = 0,30
 
 
 #%%----------------------------------------------------------------------------   
@@ -49,6 +49,11 @@ def rms(y_true, y_pred):
     y_true=np.abs(np.array(y_true))
     y_pred=np.abs(np.array(y_pred))
     return ( (np.log10(y_pred/y_true)**2).sum()/len(y_true) )**0.5
+
+def RMSE(y, y_pred):
+    y, y_pred = np.array(y).ravel(), np.array(y_pred).ravel()
+    error = y -  y_pred    
+    return np.sqrt(np.mean(np.power(error, 2)))
 
 def model_base_evaluation(x, data_args, estimator_args,
                           normalizer_args, transformer_args):
@@ -114,47 +119,26 @@ def model_base_evaluation(x, data_args, estimator_args,
       ft = np.array([1 if k>0.5 else 0 for k in x[n_decision_variables::]])
       ft = np.where(ft>0.5)[0]
   
-  #print(len(x), n_features, n_decision_variables, ft)
   if task=='regression':
       cv=KFold(n_splits=n_splits, shuffle=True, random_state=int(random_seed),)
-      #cv=LeaveOneOut()
   elif task=='forecast':
       cv=TimeSeriesSplit(n_splits=n_splits,)
   else:
       sys.exit('Cross-validation does not defined for estimator '+clf_name)
-      
-  ##--
-  #y_scaler = MaxAbsScaler()
-  #y_scaler.fit(y_train.reshape(-1,1))
-  ##--  
-  
+   
   if flag=='eval':
-    try:
-        #r=cross_val_score(model,X_train[:,ft], y_train, cv=cv, n_jobs=1, scoring=scoring)
-        #r=np.abs(r).mean()
-        
-        #y_p  = cross_val_predict(model,X_train[:,ft], y_scaler.transform(y_train.reshape(-1,1)).ravel(), cv=cv, n_jobs=1)
-        #r = rms(y_scaler.inverse_transform(y_p.reshape(-1,1)).ravel(), y_train)
-                
+    try:               
         y_p  = cross_val_predict(model,X_train[:,ft], y_train, cv=cv, n_jobs=1)
-        #r = -accuracy_log(y_p, y_train)      
-        #r = mean_squared_error(y_p, y_train)#**.5
-        #r = -r2_score(y_p, y_train)
-        #r = mean_squared_error(y_p, y_train)**.5#/rms(y_p, y_train)/r2_score(y_p, y_train)**2
         r = rms(y_p, y_train)
     except:
         r=1e12 
     
-    #print(r,'\t',p, )#'\t', ft)  
     return r
   elif flag=='run':
     model.fit(X_train[:,ft], y_train)
-    #model.fit(X_train[:,ft], y_scaler.transform(y_train.reshape(-1,1)).ravel())
     if task=='regression':
         y_p  = cross_val_predict(model,X_train[:,ft], y_train, cv=cv, n_jobs=1)
-        #y_p  = cross_val_predict(model,X_train[:,ft], y_scaler.transform(y_train.reshape(-1,1)).ravel(), cv=cv, n_jobs=1)
     else:
-        #y_p=np.array([None for i in range(len(y_train))])
         y_p=model.predict(X_train[:,ft])#y_train
         
     if n_samples_test>0:
@@ -166,17 +150,13 @@ def model_base_evaluation(x, data_args, estimator_args,
     return {
             'Y_TRAIN_TRUE':y_train, 
             'Y_TRAIN_PRED':y_p, 
-            #'Y_TRAIN_PRED': y_scaler.inverse_transform(y_p.reshape(-1,1)).ravel(),
             'Y_TEST_TRUE':y_test, 
             'Y_TEST_PRED':y_t,             
-            #'Y_TEST_PRED':y_scaler.inverse_transform(y_t.reshape(-1,1)).ravel(),
             'EST_PARAMS':p, 'PARAMS':x, 'EST_NAME':clfnme,
             'SCALES_PARAMS':{'scaler':n},
             'TRANSF_PARAMS':{'tranformer':t, 'kernel':k, 'n_components':n_components},
-            #'ESTIMATOR':clf, 
             'ACTIVE_VAR':ft, 'SCALER':n,
             'SEED':random_seed, 'N_SPLITS':n_splits,
-            #'ACTIVE_FEATURES':ft,
             'OUTPUT':target
             }
   else:
@@ -213,10 +193,6 @@ def fun_svr_fs(x,*data_args):
      'gamma'        :'scale' if _gamma<=0 else _gamma, 
      'C'            : x[5],  
      'epsilon'      : int(x[6]*1000)/1000., 
-     #'kernel'      : kernel[0],
-     #'tol'         : 1e-6,
-     #'max_iter'    : 10000,
-     #'shrinking'   : False,
      }
 
   clf.set_params(**p)
@@ -239,7 +215,7 @@ def fun_gpr_fs(x,*data_args):
   normalizer_args       = (normalizer_type,)
   transformer_args      = (transformer_type, n_components, kernel_type)
   
-  k1 = x[8]#int(x[8]*10000)/10000.
+  k1 = x[8]
   clf = GaussianProcessRegressor(random_state=int(random_seed), optimizer=None)
   kernel = {
         0: k1**2 * Matern(length_scale=int(x[5]*1000)/1000., length_scale_bounds=(1e-1, 100.0), nu=int(x[6]*1000)/1000.),
@@ -254,13 +230,6 @@ def fun_gpr_fs(x,*data_args):
   estimator_args=(clf_name, n_decision_variables, p, clf, )
   return model_base_evaluation(x, data_args, estimator_args, normalizer_args, transformer_args)
 #------------------------------------------------------------------------------   
-def RMSE(y, y_pred):
-    y, y_pred = np.array(y).ravel(), np.array(y_pred).ravel()
-    error = y -  y_pred    
-    return np.sqrt(np.mean(np.power(error, 2)))
-
-
-
 import pygmo as pg
 class evoML:
     def __init__(self, args, fun, lb, ub):
@@ -340,8 +309,8 @@ for run in range(run0, n_runs):
                     n_samples_train, n_samples_test, n_features)
             #------------------------------------------------------------------         
             optimizers=[             
-                ('SVR'  , lb_svr, ub_svr, fun_svr_fs, args, random_seed,),    # OK
-                ('GPR'  , lb_gpr, ub_gpr, fun_gpr_fs, args, random_seed,),    # OK            
+                ('SVR'  , lb_svr, ub_svr, fun_svr_fs, args, random_seed,),  
+                ('GPR'  , lb_gpr, ub_gpr, fun_gpr_fs, args, random_seed,),  
                 ]
             #------------------------------------------------------------------         
             for (clf_name, lb, ub, fun, args, random_seed) in optimizers:
