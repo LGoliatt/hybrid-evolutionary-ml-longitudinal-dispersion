@@ -1,5 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*
+"""
+- Estimation of natural streams longitudinal dispersion coefficient using 
+   hybrid evolutionary machine learning model
+   
+- Source file: read_data.py
+- Author: Leonardo Goliatt (leonardo.goliatt@ufjf.edu.br)
+"""   
 import pandas as pd
 import numpy as np
 #-------------------------------------------------------------------------------
