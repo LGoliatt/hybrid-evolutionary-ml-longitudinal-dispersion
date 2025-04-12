@@ -1,4 +1,4 @@
-<p align="center"><h1 align="center">HYBRID-EVOLUTIONARY-ML-LONGITUDINAL-DISPERSION</h1></p>
+<p align="center"><h1 align="center">Estimation of natural streams longitudinal dispersion coefficient using hybrid evolutionary machine learning model</h1></p>
 <p align="center">
 	<a href="https://itmo.ru/"><img src="https://raw.githubusercontent.com/aimclub/open-source-ops/43bb283758b43d75ec1df0a6bb4ae3eb20066323/badges/ITMO_badge.svg"></a>
 	<img src="https://img.shields.io/github/license/LGoliatt/hybrid-evolutionary-ml-longitudinal-dispersion?style=default&logo=opensourceinitiative&logoColor=white&color=blue" alt="license">
@@ -15,7 +15,7 @@
 ## Overview
 
 <overview>
-This project delivers a self-updating application designed for continuous improvement and streamlined maintenance. It automatically receives the latest features and bug fixes, ensuring users always have an up-to-date experience without requiring manual intervention. This benefits anyone needing reliable, consistently improved software.
+https://www.tandfonline.com/doi/full/10.1080/19942060.2021.1972043
 </overview>
 
 ---
